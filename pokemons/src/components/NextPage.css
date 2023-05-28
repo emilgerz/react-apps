@@ -1,0 +1,28 @@
+.page-line {
+	color: white;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-weight: 600;
+	font-size: 16px;
+	grid-column-start: 2;
+}
+
+.page-line span {
+	font-size: 20px;
+	color: rgb(255, 162, 0);
+}
+
+.next-page-button {
+	display: block;
+	margin: 10px;
+	padding: 5px 20px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	background-color: yellow;
+	border-radius: 5px;
+	border: 0;
+	width: 200px;
+	height: fit-content;
+}
+
+.next-page-button:active {
+	box-shadow: inset 1px 1px 10px 1px;
+}

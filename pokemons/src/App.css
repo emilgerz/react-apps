@@ -1,0 +1,48 @@
+.App {
+	width: 700px;
+	height: 700px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr;
+	align-items: center;
+	justify-items: center;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.get-pokemons-button {
+	display: block;
+	margin: 10px auto;
+	padding: 5px 20px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	background-color: yellow;
+	border-radius: 5px;
+	border: 0;
+}
+
+.get-pokemons-button:active {
+	box-shadow: inset 1px 1px 10px 1px;
+}
+
+.counter {
+	text-align: center;
+	color: white;
+}
+
+.page-buttons {
+	margin: 5px auto;
+	width: fit-content;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-column-start: 2;
+	align-items: center;
+	justify-items: center;
+}
+
+.grid-prev-btn {
+	grid-column-start: 1;
+}
+
+.grid-next-btn {
+	grid-column-start: 3;
+}
