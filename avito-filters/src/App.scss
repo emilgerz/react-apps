@@ -1,0 +1,49 @@
+body {
+	min-height: fit-content;
+}
+
+.app {
+	margin: 50px 0 50px 50px;
+}
+
+.list {
+	padding-left: 20px;
+
+	&__item {
+		position: relative;
+		list-style: none;
+
+		& a {
+			color: rgb(65, 147, 233);
+			text-decoration: none;
+
+			&:hover {
+				color: #fe4053;
+
+				& ~ div {
+					background-image: url(./img/arrowhover.svg);
+				}
+			}
+		}
+	}
+}
+
+.arrow-btn {
+	display: block;
+	position: absolute;
+	top: 3px;
+	left: -15px;
+	width: 13px;
+	height: 13px;
+	background-image: url(./img/arrow.svg);
+	cursor: pointer;
+	transition: transform 0.1s ease-in-out;
+
+	&_openned {
+		transform: rotateZ(90deg);
+	}
+
+	&:hover {
+		background-image: url(./img/arrowhover.svg);
+	}
+}
