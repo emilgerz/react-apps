@@ -1,15 +1,38 @@
 import { useState } from 'react'
-import data from '../data/data.json'
 
-export function MenuList({ id, name, url, parentId }) {
+export function MenuList({ id, name, checkbox, parentId, dataCheckbox, setDataCheckbox }) {
 	const [expand, setExpand] = useState(false)
 
 	// if we have at least 1 child then we draw expand-arrow btn
-	const hasChildrens = data.find((item) => item.parentId === id)
+	const childrens = dataCheckbox.filter((item) => item.parentId === id)
 
 	const clickHandler = (event) => {
+		if (event) {
+			event.preventDefault()
+		}
+
 		setExpand(!expand)
-		event.preventDefault()
+	}
+
+	const inputHandler = (list, checkbox) => {
+		if (list.length > 0) {
+			return list.every((item) => item.checkbox === true)
+		} else {
+			return checkbox
+		}
+	}
+
+	const onChangeHandler = (list, checkbox) => {
+		const updatedDataCheckbox = list.map((item) => {
+			if (item.id === id) {
+				item.checkbox = !checkbox
+			}
+
+			return item
+		})
+
+		setDataCheckbox(updatedDataCheckbox)
+		setExpand(!!expand)
 	}
 
 	return (
@@ -18,6 +41,8 @@ export function MenuList({ id, name, url, parentId }) {
 				type="checkbox"
 				name={name}
 				id={id}
+				checked={inputHandler(childrens, checkbox)}
+				onChange={() => onChangeHandler(dataCheckbox, checkbox)}
 			/>
 
 			<a
@@ -27,7 +52,7 @@ export function MenuList({ id, name, url, parentId }) {
 				{name}
 			</a>
 
-			{hasChildrens && (
+			{childrens.length > 0 && (
 				<div
 					className={expand ? 'arrow-btn arrow-btn_openned' : 'arrow-btn'}
 					onClick={() => clickHandler()}
@@ -35,14 +60,19 @@ export function MenuList({ id, name, url, parentId }) {
 			)}
 
 			{expand &&
-				data.map((item) => {
+				dataCheckbox.map((item) => {
 					if (item.parentId === id) {
 						return (
 							<ul
 								className="list"
-								key={item.parentId}
+								key={item.id}
 							>
-								<MenuList {...item} />
+								<MenuList
+									key={item.id}
+									{...item}
+									dataCheckbox={dataCheckbox}
+									setDataCheckbox={setDataCheckbox}
+								/>
 							</ul>
 						)
 					}

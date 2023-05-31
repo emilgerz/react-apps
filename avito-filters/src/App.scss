@@ -7,6 +7,7 @@ body {
 }
 
 .list {
+	user-select: none;
 	padding-left: 20px;
 
 	&__item {
