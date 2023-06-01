@@ -1,9 +1,8 @@
 import { useState } from 'react'
 
-export function MenuList({ id, name, checkbox, parentId, dataCheckbox, setDataCheckbox }) {
+export function MenuList({ id, name, checkbox, dataCheckbox, setDataCheckbox }) {
 	const [expand, setExpand] = useState(false)
 
-	// if we have at least 1 child then we draw expand-arrow btn
 	const childrens = dataCheckbox.filter((item) => item.parentId === id)
 
 	const clickHandler = (event) => {
@@ -32,7 +31,6 @@ export function MenuList({ id, name, checkbox, parentId, dataCheckbox, setDataCh
 		})
 
 		setDataCheckbox(updatedDataCheckbox)
-		setExpand(!!expand)
 	}
 
 	return (
