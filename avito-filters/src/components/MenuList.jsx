@@ -1,9 +1,13 @@
 import { useState } from 'react'
 
-export function MenuList({ id, name, checkbox, dataCheckbox, setDataCheckbox }) {
+// {
+// 	12321: true,
+// }
+
+export function MenuList({ id, name, checkedIds, data, checkboxHandler }) {
 	const [expand, setExpand] = useState(false)
 
-	const childrens = dataCheckbox.filter((item) => item.parentId === id)
+	const childrens = data.filter((item) => item.parentId === id)
 
 	const clickHandler = (event) => {
 		if (event) {
@@ -13,68 +17,41 @@ export function MenuList({ id, name, checkbox, dataCheckbox, setDataCheckbox }) 
 		setExpand(!expand)
 	}
 
-	const inputHandler = (list, checkbox) => {
-		if (list.length > 0) {
-			return list.every((item) => item.checkbox === true)
-		} else {
-			return checkbox
-		}
-	}
-
-	const onChangeHandler = (list, checkbox) => {
-		const updatedDataCheckbox = list.map((item) => {
-			if (item.id === id) {
-				item.checkbox = !checkbox
-			}
-
-			return item
-		})
-
-		setDataCheckbox(updatedDataCheckbox)
-	}
-
 	return (
 		<li className="list__item">
 			<input
 				type="checkbox"
 				name={name}
 				id={id}
-				checked={inputHandler(childrens, checkbox)}
-				onChange={() => onChangeHandler(dataCheckbox, checkbox)}
+				checked={checkedIds.includes(id)}
+				onChange={() => checkboxHandler(id)}
 			/>
-
 			<a
 				onClick={(e) => clickHandler(e)}
 				href=""
 			>
 				{name}
 			</a>
-
 			{childrens.length > 0 && (
-				<div
+				<button
 					className={expand ? 'arrow-btn arrow-btn_openned' : 'arrow-btn'}
 					onClick={() => clickHandler()}
-				></div>
+				></button>
 			)}
-
-			{expand &&
-				dataCheckbox.map((item) => {
-					if (item.parentId === id) {
-						return (
-							<ul
-								className="list"
-								key={item.id}
-							>
-								<MenuList
-									key={item.id}
-									{...item}
-									dataCheckbox={dataCheckbox}
-									setDataCheckbox={setDataCheckbox}
-								/>
-							</ul>
-						)
-					}
-				})}
+			{expand && (
+				<ul>
+					{childrens.map((item) => (
+						<MenuList
+							data={data}
+							key={item.id}
+							id={item.id}
+							name={item.name}
+							checkedIds={checkedIds}
+							checkboxHandler={checkboxHandler}
+						/>
+					))}
+				</ul>
+			)}
 		</li>
 	)
 }
