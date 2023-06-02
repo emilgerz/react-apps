@@ -1,9 +1,5 @@
 import { useState } from 'react'
 
-// {
-// 	12321: true,
-// }
-
 export function MenuList({ id, name, checkedIds, data, checkboxHandler }) {
 	const [expand, setExpand] = useState(false)
 
@@ -26,18 +22,21 @@ export function MenuList({ id, name, checkedIds, data, checkboxHandler }) {
 				checked={checkedIds.includes(id)}
 				onChange={() => checkboxHandler(id)}
 			/>
+
 			<a
 				onClick={(e) => clickHandler(e)}
 				href=""
 			>
 				{name}
 			</a>
+
 			{childrens.length > 0 && (
 				<button
 					className={expand ? 'arrow-btn arrow-btn_openned' : 'arrow-btn'}
 					onClick={() => clickHandler()}
 				></button>
 			)}
+
 			{expand && (
 				<ul>
 					{childrens.map((item) => (

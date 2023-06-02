@@ -26,17 +26,33 @@ function findDescendants(id, data) {
 	return descendants
 }
 
+function findSameLevel(id, data) {
+	const initialItem = data.find((item) => item.id === id)
+
+	const parent = data.find((item) => item.id === initialItem.parentId)
+
+	return [data.filter((item) => item.parentId === parent?.id).map((item) => item.id), parent.id]
+}
+
 function App() {
-	const [checkedIds, setCheckedIds] = useState([28958, 12679])
+	const [checkedIds, setCheckedIds] = useState([])
 
 	const checkboxHandler = (id) => {
 		setCheckedIds((prev) => {
-			if (prev.includes(id)) {
-				const descendants = findDescendants(id, data)
+			const descendants = findDescendants(id, data)
+			const ancestors = findAncestors(id, data)
+			const [sameLevelIds, parent] = findSameLevel(id, data)
 
-				return prev.filter((item) => !descendants.includes(item) && item !== id)
+			if (prev.includes(id)) {
+				return prev.filter(
+					(item) => !ancestors.includes(item) && !descendants.includes(item) && item !== id
+				)
 			} else {
-				return [...prev, id, ...findDescendants(id, data), ...findAncestors(id, data)]
+				if (sameLevelIds.filter((itemId) => itemId !== id).every((id) => prev.includes(id))) {
+					return [...prev, id, ...descendants, parent]
+				}
+
+				return [...prev, id, ...descendants]
 			}
 		})
 	}
