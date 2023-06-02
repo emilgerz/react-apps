@@ -1,15 +1,10 @@
-# CIAN Filters
+## CIAN Filters
 
-## Motivation
+### Explanation
 
-This application – is simple filter-app for bank offers.
-Just in case, you want to get your own home for mortage. Here is filters, and they can help you to get exactly that offer, which fits on you.
+CIAN Filters built to find mortgage for your future house.
 
-## How it works
+### How it works
 
-We have large JSON file with offer information, like which bank provides mortage, his ID, which options includes in offer and so on.
-CIAN Filters is small aplication with controlled inputs, which provides your offer on your selected set of options in real-time.
-
-## Build
-
-This app built on the Vite. Pure React, JSX.
+The application is configured to search for suitable offers from banks. The offers themselves and all information about the bank are stored in a large json file.
+The interface is built from controlled reused inputs. Each input has its own state. All states are connected together and checked at the same time using a helper function. This function selects suitable bank offers and displays them in the interface.
