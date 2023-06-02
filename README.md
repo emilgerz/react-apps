@@ -7,7 +7,7 @@ These apps is my past homeworks given by the mentor.
 
 Apps:
 
-- [CIAN Filters](https://github.com/emilgerz/react-apps#cian-filters)
+- [CIAN Filters](#gradient)
 - Avito Filters
 - Gradient
 - Pokemons
