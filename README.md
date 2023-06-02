@@ -2,10 +2,16 @@
 
 This is my bank of mini apps. Built on pure React.
 
-<$>[note]
 These apps is useless but shows my coding style and what features I can implement.
 These apps is my past homeworks given by the mentor.
-<$>
+
+Apps:
+
+- [CIAN Filters](https://github.com/emilgerz/react-apps/edit/main/README.md#cian-filters)
+- Avito Filters
+- Gradient
+- Pokemons
+- JetBrains Menu
 
 ## CIAN Filters
 
