@@ -7,11 +7,11 @@ These apps is my past homeworks given by the mentor.
 
 Apps:
 
-- [CIAN Filters](#gradient)
-- Avito Filters
-- Gradient
-- Pokemons
-- JetBrains Menu
+- [CIAN Filters](#cian-filters)
+- [Avito Filters](#avito-filters)
+- [Gradient](#gradient)
+- [Pokemons](#pokemons)
+- [JetBrains Menu](#jetbrains-menu)
 
 ## CIAN Filters
 
@@ -57,3 +57,14 @@ Simple game without logics: this app just shows you how do I handle fetching dat
 We have pokemons on the interface. Pokemon's data comes with link: name, his id, picture and else.
 We can catch Pokemon, but it costs 1 sec. To handle delay, I used hook useState with callback inside, because delay action is asynchronous (setTimeout).
 We also have pagination here – you can look around and pick another pokemon, if you dont like pokemons on the current page.
+
+## JetBrains Menu
+
+### Explanation
+
+Big tree-like menu from JetBrains website. Originaly, it helps navigate in a huge documentations of products.
+
+### How it works
+
+We have here huge json file, like 30,000 strokes. We just draw menu with that options, what we have in json file: every option has his id, anchors, inner pages and so on.
+You can select some option – on the right side of screen you'll see openned page's id or anchors, depends on what exactly did you select. 
