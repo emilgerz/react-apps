@@ -1,7 +1,3 @@
-body {
-	// padding: 50px;
-}
-
 .app {
 	display: flex;
 	flex-direction: row-reverse;
@@ -51,6 +47,10 @@ body {
 	border: 0;
 	background-color: transparent;
 	cursor: pointer;
+
+	&:hover {
+		filter: drop-shadow(0 0 10px black);
+	}
 }
 
 .credit {
