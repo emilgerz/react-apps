@@ -17,7 +17,7 @@ Apps:
 
 ### Explanation
 
-CIAN Filters built to find mortgage for your future house.
+CIAN Filters built to find mortgage for your future house. <br/>
 **Many controlled inputs with diffrent types, fetching json, filtering data, reused ccomponents, SCSS/Sass.**
 
 ### How it works
