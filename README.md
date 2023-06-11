@@ -29,7 +29,7 @@ The interface is built from controlled reused inputs. Each input has its own sta
 
 ### Explanation
 
-Avito Filters shows you logically correct work of compicated tree of checkboxes.
+Avito Filters shows you logically correct work of compicated tree of checkboxes. <br/>
 **Tree-menu built from json, smart checkbox-selecting, recursion, single component for every parent and his child, SCSS/Sass.**
 
 ### How it works
@@ -41,7 +41,7 @@ So if you select all childrens of one parent tree, parent's checkbox is setting 
 
 ### Explanation
 
-This is one of the simpliest apps here. It paints background to gradient betwen selected colors in inputs.
+This is one of the simpliest apps here. It paints background to gradient betwen selected colors in inputs. <br/>
 **Controlled inputs with linked neighbour-input, confirmation button, alert for bad causes.**
 
 ### How it works
@@ -53,7 +53,7 @@ On the right side of inputs we have a color-inputs – you can pick color there,
 
 ### Explanation
 
-Simple game without logics: this app just shows you how do I handle fetching data by link.
+Simple game without logics: this app just shows you how do I handle fetching data by link. <br/>
 **GRID plate with little boxes, async state update, fetching data by url, pagination, count for caught pokemons, CSS Modules.**
 
 ### How it works
@@ -66,7 +66,7 @@ We also have pagination here – you can look around and pick another pokemon, i
 
 ### Explanation
 
-Big tree-like menu from JetBrains website. Originaly, it helps navigate in a huge documentations of products.
+Big tree-like menu from JetBrains website. Originaly, it helps navigate in a huge documentations of products. <br/>
 **Recursion, reused components, large data, CSS Modules.**
 
 ### How it works
