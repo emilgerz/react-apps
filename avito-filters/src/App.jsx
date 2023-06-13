@@ -48,7 +48,7 @@ function App() {
 			} else {
 				if (sameLevelIds.filter((itemId) => itemId !== id).every((id) => prev.includes(id))) {
 					const filledAncestors = ancestors.filter((id) => {
-						return sameLevelIds.some((childId) => data.find((item) => item.id === childId).parentId === id)
+						return checkedIds.some((childId) => data.find((item) => item.id === childId).parentId === id)
 					})
 
 					// const filledAncestors = ancestors.filter((id) => {
