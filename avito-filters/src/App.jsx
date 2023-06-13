@@ -31,7 +31,7 @@ function findSameLevel(id, data) {
 
 	const parent = data.find((item) => item.id === initialItem.parentId)
 
-	return [data.filter((item) => item.parentId === parent?.id).map((item) => item.id), parent?.id]
+	return data.filter((item) => item.parentId === parent?.id).map((item) => item.id)
 }
 
 function App() {
@@ -41,7 +41,7 @@ function App() {
 		setCheckedIds((prev) => {
 			const descendants = findDescendants(id, data)
 			const ancestors = findAncestors(id, data)
-			const [sameLevelIds, parent] = findSameLevel(id, data)
+			const sameLevelIds = findSameLevel(id, data)
 
 			if (prev.includes(id)) {
 				return prev.filter((item) => !ancestors.includes(item) && !descendants.includes(item) && item !== id)
@@ -51,13 +51,7 @@ function App() {
 						return checkedIds.some((childId) => data.find((item) => item.id === childId).parentId === id)
 					})
 
-					// const filledAncestors = ancestors.filter((id) => {
-					// 	const child = data.filter((item) => item.parentId === id)
-					// 	return prev.includes(child)
-					// })
-
 					return [...prev, id, ...descendants, ...filledAncestors]
-					//✅ ACTUAL // return [...prev, id, ...descendants, parent]
 				}
 
 				return [...prev, id, ...descendants]
