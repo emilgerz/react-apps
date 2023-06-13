@@ -34,7 +34,7 @@ const offerFilter = (options, data) => {
 		const insuranceAllowed =
 			insuranceOption === offer.requirements.find((prop) => prop.key === 'INSURANCE')?.value
 
-		if (
+		return (
 			banksAllowed &&
 			creditAllowed &&
 			initialFeeAllowed &&
@@ -42,9 +42,7 @@ const offerFilter = (options, data) => {
 			propertyTypeAllowed &&
 			homeTypeAllowed &&
 			insuranceAllowed
-		) {
-			return offer
-		}
+		)
 	})
 }
 
