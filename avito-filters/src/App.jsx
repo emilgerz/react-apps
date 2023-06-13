@@ -1,8 +1,8 @@
+import { useState } from 'react'
+import data from './data/data.json'
+import { MenuList } from './components/MenuList'
 import 'modern-css-reset'
 import './App.scss'
-import { MenuList } from './components/MenuList'
-import data from './data/data.json'
-import { useState } from 'react'
 
 function findAncestors(id, data) {
 	const current = data.find((item) => item.id === id)
@@ -31,7 +31,7 @@ function findSameLevel(id, data) {
 
 	const parent = data.find((item) => item.id === initialItem.parentId)
 
-	return [data.filter((item) => item.parentId === parent?.id).map((item) => item.id), parent.id]
+	return [data.filter((item) => item.parentId === parent?.id).map((item) => item.id), parent?.id]
 }
 
 function App() {
@@ -44,12 +44,20 @@ function App() {
 			const [sameLevelIds, parent] = findSameLevel(id, data)
 
 			if (prev.includes(id)) {
-				return prev.filter(
-					(item) => !ancestors.includes(item) && !descendants.includes(item) && item !== id
-				)
+				return prev.filter((item) => !ancestors.includes(item) && !descendants.includes(item) && item !== id)
 			} else {
 				if (sameLevelIds.filter((itemId) => itemId !== id).every((id) => prev.includes(id))) {
-					return [...prev, id, ...descendants, parent]
+					const filledAncestors = ancestors.filter((id) => {
+						return sameLevelIds.some((childId) => data.find((item) => item.id === childId).parentId === id)
+					})
+
+					// const filledAncestors = ancestors.filter((id) => {
+					// 	const child = data.filter((item) => item.parentId === id)
+					// 	return prev.includes(child)
+					// })
+
+					return [...prev, id, ...descendants, ...filledAncestors]
+					//✅ ACTUAL // return [...prev, id, ...descendants, parent]
 				}
 
 				return [...prev, id, ...descendants]
