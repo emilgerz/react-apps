@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { Backspace } from '../assets/Backspace'
+import { status2color } from '../keyStyles'
 
 const keyboardKeys = [
 	['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
@@ -7,56 +8,38 @@ const keyboardKeys = [
 	['Z', 'X', 'C', 'V', 'B', 'N', 'M'],
 ]
 
-const keyboardKeysStyle = keyboardKeys.map((row) => row.map(() => 'clear'))
+export function Keyboard({ onLetterPress, onBsPress, onEnterPress, letterColor }) {
+	useEffect(() => {
+		const keyboardHandler = (event) => {
+			if (event.key === 'Enter') {
+				onEnterPress()
+				return
+			}
 
-export function Keyboard({ onLetterPress, onBsPress, onEnterPress, enteredWords, lettersBackground, hiddenWord }) {
-	const [keysStyle, setKeysStyle] = useState(keyboardKeysStyle)
-	const [changeKeyStyles, setChangeKeyStyles] = useState(false)
+			if (event.key === 'Backspace') {
+				onBsPress()
+				return
+			}
 
-	const styleTransform = (condition) => {
-		switch (condition) {
-			case 'clear':
-				return { backgroundColor: '#d2d2d2', color: 'black' }
-			case 'correct':
-				return { backgroundColor: '#14b521', color: 'white' }
-			case 'includes':
-				return { backgroundColor: '#bfbf0d', color: 'white' }
-			case 'fail':
-				return { backgroundColor: '#919191', color: 'white' }
+			if (event.key.toLowerCase() > 'a' && event.key.toLowerCase() < 'z' && event.key.length === 1) {
+				onLetterPress(event.key.toUpperCase())
+				return
+			}
 		}
-	}
 
-	// Тут ужас!!!!!!!!!!!!!!!!!!!!!!!!! мне стыдно за такой код
-	if (changeKeyStyles) {
-		const appendNewStyles = lettersBackground(enteredWords.at(-1), hiddenWord)
+		window.addEventListener('keydown', keyboardHandler)
 
-		setKeysStyle((prev) =>
-			prev.map((row, indexRow) =>
-				row.map((letter, indexLetter) => {
-					for (const letterAndColor of appendNewStyles) {
-						if (keyboardKeys[indexRow][indexLetter] === letterAndColor[0]) {
-							return letterAndColor[1]
-						}
-					}
-
-					return letter
-				})
-			)
-		)
-
-		setChangeKeyStyles(false)
-	}
-
-	console.log(keysStyle)
+		return () => removeEventListener('keydown', keyboardHandler)
+	}, [onLetterPress, onBsPress, onEnterPress])
 
 	return (
 		<div className="keyboard">
 			<div>
-				{keyboardKeys[0].map((key, i) => (
+				{keyboardKeys[0].map((key) => (
 					<button
 						key={key}
 						onClick={() => onLetterPress(key)}
-						style={styleTransform(keysStyle[0][i])}
+						style={{ backgroundColor: status2color[letterColor[key]] }}
 					>
 						{key}
 					</button>
@@ -64,11 +47,11 @@ export function Keyboard({ onLetterPress, onBsPress, onEnterPress, enteredWords,
 			</div>
 
 			<div>
-				{keyboardKeys[1].map((key, i) => (
+				{keyboardKeys[1].map((key) => (
 					<button
 						key={key}
 						onClick={() => onLetterPress(key)}
-						style={styleTransform(keysStyle[1][i])}
+						style={{ backgroundColor: status2color[letterColor[key]] }}
 					>
 						{key}
 					</button>
@@ -80,17 +63,16 @@ export function Keyboard({ onLetterPress, onBsPress, onEnterPress, enteredWords,
 					style={{ fontSize: 16 }}
 					onClick={() => {
 						onEnterPress()
-						setChangeKeyStyles(true)
 					}}
 				>
 					ENTER
 				</button>
 
-				{keyboardKeys[2].map((key, i) => (
+				{keyboardKeys[2].map((key) => (
 					<button
 						key={key}
 						onClick={() => onLetterPress(key)}
-						style={styleTransform(keysStyle[2][i])}
+						style={{ backgroundColor: status2color[letterColor[key]] }}
 					>
 						{key}
 					</button>
@@ -106,30 +88,3 @@ export function Keyboard({ onLetterPress, onBsPress, onEnterPress, enteredWords,
 		</div>
 	)
 }
-
-// const keys = [
-// 	[
-// 		{ Q: 'clear' },
-// 		{ W: 'clear' },
-// 		{ E: 'clear' },
-// 		{ R: 'clear' },
-// 		{ T: 'clear' },
-// 		{ Y: 'clear' },
-// 		{ U: 'clear' },
-// 		{ I: 'clear' },
-// 		{ O: 'clear' },
-// 		{ P: 'clear' },
-// 	],
-// 	[
-// 		{ A: 'clear' },
-// 		{ S: 'clear' },
-// 		{ D: 'clear' },
-// 		{ F: 'clear' },
-// 		{ G: 'clear' },
-// 		{ H: 'clear' },
-// 		{ J: 'clear' },
-// 		{ K: 'clear' },
-// 		{ L: 'clear' },
-// 	],
-// 	[{ Z: 'clear' }, { X: 'clear' }, { C: 'clear' }, { V: 'clear' }, { B: 'clear' }, { N: 'clear' }, { M: 'clear' }],
-// ]

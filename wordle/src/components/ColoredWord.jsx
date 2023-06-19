@@ -1,24 +1,34 @@
-export function ColoredWord({ word, hiddenWord, lettersBackground }) {
-	const arrayFromWord = [...word]
+import { lettersBackground } from '../lettersBackground'
+import { status2color } from '../keyStyles'
 
-	const lettersBg = lettersBackground(word, hiddenWord).map((letterAndColor) => {
-		switch (letterAndColor[1]) {
-			case 'correct':
-				return '#14b521'
-			case 'includes':
-				return '#bfbf0d'
-			case 'fail':
-				return '#919191'
-		}
-	})
+// const status2color = {
+// 	correct: '#14b521',
+// 	includes: '#bfbf0d',
+// 	fail: '#919191',
+// }
+
+export function ColoredWord({ word, hiddenWord }) {
+	const lettersBg = lettersBackground(word, hiddenWord)
+	// .map(([_, status]) => status2color[status])
+
+	// .map((letterAndColor) => {
+	// 	switch (letterAndColor[1]) {
+	// 		case 'correct':
+	// 			return '#14b521'
+	// 		case 'includes':
+	// 			return '#bfbf0d'
+	// 		case 'fail':
+	// 			return '#919191'
+	// 	}
+	// })
 
 	return (
 		<div className="wordle__table__word">
-			{arrayFromWord.map((letter, i) => (
+			{lettersBg.map(([letter, status]) => (
 				<div
+					key={letter + status}
 					className="wordle__table__word__letter"
-					style={{ backgroundColor: lettersBg[i], color: 'white', borderColor: '#a8a8a8' }}
-					key={`${(letter, i)}`}
+					style={{ backgroundColor: status2color[status], color: 'white', borderColor: '#a8a8a8' }}
 				>
 					<p>{letter}</p>
 				</div>

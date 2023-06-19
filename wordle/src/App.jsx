@@ -3,25 +3,12 @@ import './App.scss'
 import { useEffect, useState } from 'react'
 import { Keyboard } from './components/Keyboard'
 import { Table } from './components/Table'
+import { newKeyboardStyles } from './newKeyboardStyles'
 
 function App() {
 	const [hiddenWord, setHiddenWord] = useState('WORLD')
 	const [enteredWords, setEnteredWords] = useState([])
 	const [inputWord, setInputWord] = useState('')
-
-	const lettersBackground = (word, hiddenWord) => {
-		return Array.from(word, (letter, i) => {
-			if (letter === hiddenWord[i]) {
-				return [letter, 'correct']
-			}
-
-			if (hiddenWord.includes(letter)) {
-				return [letter, 'includes']
-			}
-
-			return [letter, 'fail']
-		})
-	}
 
 	const onLetterPress = (key) => {
 		if (enteredWords.length < 6) {
@@ -47,12 +34,17 @@ function App() {
 		}
 	}, [enteredWords, hiddenWord])
 
+	const win = enteredWords.includes(hiddenWord)
+	const failed = !win && enteredWords.length === 6
+
+	const letterColor = newKeyboardStyles(enteredWords, hiddenWord)
+
 	return (
 		<>
 			<div className="heading">
 				<h1>WORDLE</h1>
 				<h3>
-					by
+					by{' '}
 					<a
 						href="https://github.com/emilgerz"
 						target="_blank"
@@ -64,23 +56,20 @@ function App() {
 			</div>
 
 			<div className="wordle">
-				{enteredWords.length === 6 && <p className="wordle__result">{hiddenWord}</p>}
-				{enteredWords.includes(hiddenWord) && <p className="wordle__result">WIN</p>}
+				{failed && <p className="wordle__result">{hiddenWord}</p>}
+				{win && <p className="wordle__result">WIN</p>}
 
 				<Table
 					enteredWords={enteredWords}
 					inputWord={inputWord}
 					hiddenWord={hiddenWord}
-					lettersBackground={lettersBackground}
 				/>
 
 				<Keyboard
-					lettersBackground={lettersBackground}
 					onLetterPress={onLetterPress}
 					onEnterPress={onEnterPress}
-					enteredWords={enteredWords}
-					hiddenWord={hiddenWord}
 					onBsPress={onBsPress}
+					letterColor={letterColor}
 				/>
 			</div>
 		</>
