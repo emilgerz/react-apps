@@ -1,7 +1,4 @@
 export function Word({ inputWord }) {
-	// const arrayFromInputWord = [...inputWord]
-	// const emptyBlocks = Array(5 - inputWord.length).fill(' ')
-
 	return (
 		<div className="wordle__table__word">
 			{Array(5)
@@ -10,19 +7,11 @@ export function Word({ inputWord }) {
 					<div
 						key={i}
 						className="wordle__table__word__letter"
-						style={{ borderColor: '#a8a8a8' }}
+						style={{ borderColor: inputWord[i] ? '#a8a8a8' : false }}
 					>
 						<p>{inputWord[i]}</p>
 					</div>
 				))}
-
-			{/* {emptyBlocks.map((_, i) => (
-				<div
-					className="wordle__table__word__letter"
-					style={{ borderColor: '#d2d2d2' }}
-					key={i}
-				></div>
-			))} */}
 		</div>
 	)
 }

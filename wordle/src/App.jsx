@@ -1,38 +1,66 @@
-import 'normalize.css'
-import './App.scss'
-import { useEffect, useState } from 'react'
+import { useReducer } from 'react'
+import { newKeyboardStyles } from './functions/newKeyboardStyles'
 import { Keyboard } from './components/Keyboard'
 import { Table } from './components/Table'
-import { newKeyboardStyles } from './newKeyboardStyles'
+import 'normalize.css'
+import './App.scss'
+
+const initialState = {
+	hiddenWord: 'WORLD',
+	enteredWords: [],
+	inputWord: '',
+}
+
+const reducer = (state = initialState, action) => {
+	if (state.enteredWords.includes(state.hiddenWord)) {
+		return state
+	}
+
+	switch (action.type) {
+		case 'ENTER_PRESS': {
+			const { inputWord } = state
+			if (inputWord.length !== 5) {
+				return state
+			}
+
+			return {
+				...state,
+				inputWord: '',
+				enteredWords: [...state.enteredWords, state.inputWord],
+			}
+		}
+
+		case 'LETTER_PRESS': {
+			const { inputWord } = state
+			return {
+				...state,
+				inputWord: inputWord.length < 5 ? inputWord + action.letter : inputWord,
+			}
+		}
+
+		case 'BS_PRESS': {
+			return { ...state, inputWord: state.inputWord.slice(0, -1) }
+		}
+	}
+}
 
 function App() {
-	const [hiddenWord, setHiddenWord] = useState('WORLD')
-	const [enteredWords, setEnteredWords] = useState([])
-	const [inputWord, setInputWord] = useState('')
+	const [state, dispatch] = useReducer(reducer, initialState)
+	const { hiddenWord, enteredWords, inputWord } = state
+
+	console.log({ hiddenWord, enteredWords, inputWord })
 
 	const onLetterPress = (key) => {
-		if (enteredWords.length < 6) {
-			setInputWord((prev) => (prev.length < 5 ? prev + key : prev))
-		}
+		dispatch({ type: 'LETTER_PRESS', letter: key })
 	}
 
 	const onBsPress = () => {
-		setInputWord((prev) => prev.slice(0, -1))
+		dispatch({ type: 'BS_PRESS' })
 	}
 
 	const onEnterPress = () => {
-		if (inputWord.length === 5 && enteredWords.length < 6) {
-			setEnteredWords([...enteredWords, inputWord])
-			setInputWord('')
-		}
+		dispatch({ type: 'ENTER_PRESS' })
 	}
-
-	useEffect(() => {
-		if (enteredWords.includes(hiddenWord)) {
-			enteredWords.length = 6
-			setEnteredWords(enteredWords)
-		}
-	}, [enteredWords, hiddenWord])
 
 	const win = enteredWords.includes(hiddenWord)
 	const failed = !win && enteredWords.length === 6

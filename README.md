@@ -18,9 +18,11 @@ These apps is my past homeworks given by the mentor.
 Apps:
 
 - [CIAN Filters](#cian-filters)
+- [WORDLE](#wordle)
 - [Avito Filters](#avito-filters)
 - [Gradient](#gradient)
 - [Pokemons](#pokemons)
+- [JetBrains Menu](#jetbrains-menu)
 - [JetBrains Menu](#jetbrains-menu)
 
 ---
@@ -36,6 +38,20 @@ CIAN Filters built to find mortgage for your future house. <br/>
 
 The application is configured to search for suitable offers from banks. The offers themselves and all information about the bank are stored in a large json file.
 The interface is built from controlled reused inputs. Each input has its own state. All states are connected together and checked at the same time using a helper function. This function selects suitable bank offers and displays them in the interface.
+
+---
+
+## WORDLE
+
+### Explanation
+
+Famous mini-game to find out what 6-letters word was hidden <br/>
+**useReducer & useEffect hooks, correct addEventListener on keyboard, UI colorization based on game logics, SCSS/Sass**
+
+### How it works
+
+Wordle - its a mini-game. You have to find out hidden word. Originaly, hidden word updates once in a 24 hours – but in my game it never changes. No worries – word is too easy to find it.
+You have 6 tries to find him, every try will give you clue on strokes and keyboard – green background means you caught correct letter in his original place, yellow background means that this letter includes in hidden word, but not in exactly that place, grey background means that this letter is not correct and not includes in hidden word.
 
 ---
 
@@ -112,6 +128,7 @@ You can select some option – on the right side of screen you'll see openned pa
 Приложения:
 
 - [CIAN Filters](#cian-filters-ru)
+- [WORDLE](#wordle-ru)
 - [Avito Filters](#avito-filters-ru)
 - [Gradient](#gradient-ru)
 - [Pokemons](#pokemons-ru)
@@ -130,6 +147,21 @@ You can select some option – on the right side of screen you'll see openned pa
 
 Приложение имеет множество контроллируемых инпутов, с помощью которых ищется множество подходящих предложений из json-файла.
 У каждого компонента есть свой стейт, который передается корневому компоненту. Корневой компонент принимает все стейты и формирует массив подходящих предложений, а потом отрисовывает их в интерфейсе.
+
+---
+
+## WORDLE RU
+
+### Краткое описание
+
+Известная мини-игра: ваша задача – найти загадочное слово за 6 попыток с нативными подсказками. <br/>
+**useReducer & useEffect хуки, корректный addEventListener на клавиатуре, окрашивание UI опираясь на игровую логику, SCSS/Sass**
+
+### Как оно работает
+
+Wordle – это известная мини-игра по поиску слова, которое меняется каждый день. Но в моем приложении это слово – константа, которая никогда не меняется.
+Но не переживайте – с подсказками на экране угадать слово будет не сложно.
+У вас есть 6 попыток, чтобы угадать слово. Каждая попытка будет давать вам подскаку в вводимой строке и виртуальной клавиатуре – зеленый фон буквы значит, что буква угадана в нужном месте, желтый фон – что буква угадана, но ее расположение иное, серый фон – что буква отстуствует в слове.
 
 ---
 

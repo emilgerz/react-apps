@@ -1,32 +1,13 @@
-import { lettersBackground } from '../lettersBackground'
-import { status2color } from '../keyStyles'
-
-// const status2color = {
-// 	correct: '#14b521',
-// 	includes: '#bfbf0d',
-// 	fail: '#919191',
-// }
+import { lettersBackground } from '../functions/lettersBackground'
+import { status2color } from '../functions/satus2color'
 
 export function ColoredWord({ word, hiddenWord }) {
 	const lettersBg = lettersBackground(word, hiddenWord)
-	// .map(([_, status]) => status2color[status])
-
-	// .map((letterAndColor) => {
-	// 	switch (letterAndColor[1]) {
-	// 		case 'correct':
-	// 			return '#14b521'
-	// 		case 'includes':
-	// 			return '#bfbf0d'
-	// 		case 'fail':
-	// 			return '#919191'
-	// 	}
-	// })
-
 	return (
 		<div className="wordle__table__word">
-			{lettersBg.map(([letter, status]) => (
+			{lettersBg.map(([letter, status], i) => (
 				<div
-					key={letter + status}
+					key={letter + status + i}
 					className="wordle__table__word__letter"
 					style={{ backgroundColor: status2color[status], color: 'white', borderColor: '#a8a8a8' }}
 				>

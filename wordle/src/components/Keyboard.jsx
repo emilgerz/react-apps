@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Backspace } from '../assets/Backspace'
-import { status2color } from '../keyStyles'
+import { status2color } from '../functions/satus2color'
 
 const keyboardKeys = [
 	['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
@@ -30,7 +30,7 @@ export function Keyboard({ onLetterPress, onBsPress, onEnterPress, letterColor }
 		window.addEventListener('keydown', keyboardHandler)
 
 		return () => removeEventListener('keydown', keyboardHandler)
-	}, [onLetterPress, onBsPress, onEnterPress])
+	}, [])
 
 	return (
 		<div className="keyboard">
