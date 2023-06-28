@@ -17,23 +17,29 @@ These apps is my past homeworks given by the mentor.
 
 Apps:
 
-- [CIAN Filters](#cian-filters)
+- [CIAN Filters](#cian-filters) <br/>
   **Many controlled inputs with diffrent types, fetching json, filtering data, reused ccomponents, SCSS/Sass**
   <br/>
-- [WORDLE](#wordle)
+
+- [WORDLE](#wordle) <br/>
   **useReducer & useEffect hooks, correct addEventListener on keyboard, UI colorization based on game logics, SCSS/Sass**
   <br/>
-- [Pokemons](#pokemons)
+
+- [Pokemons](#pokemons) <br/>
   **GRID plate with little boxes, async state update, fetching data by url, pagination, count for caught pokemons, CSS Modules**
   <br/>
-- [Avito Filters](#avito-filters)
+
+- [Avito Filters](#avito-filters) <br/>
   **Tree-menu built from json, smart checkbox-selecting, recursion, single component for every parent and his child, SCSS/Sass**
   <br/>
-- [JetBrains Menu](#jetbrains-menu)
+
+- [JetBrains Menu](#jetbrains-menu) <br/>
   **Recursion, reused components, large data, CSS Modules**
   <br/>
-- [Gradient](#gradient)
+
+- [Gradient](#gradient) <br/>
   **Controlled inputs with linked neighbour-input, confirmation button, alert for bad causes**
+  <br/>
 
 ---
 
@@ -137,23 +143,24 @@ You can select some option – on the right side of screen you'll see openned pa
 
 Приложения:
 
-- [CIAN Filters](#cian-filters-ru)
+- [CIAN Filters](#cian-filters-ru)<br/>
   **Множество контроллируемых инпутов, работа с данными из json, фильтрация данных, переиспользование компонентов, SCSS/Sass.**
   <br/>
-- [WORDLE](#wordle-ru)
+- [WORDLE](#wordle-ru)<br/>
   **useReducer & useEffect хуки, корректный addEventListener на клавиатуре, окрашивание UI опираясь на игровую логику, SCSS/Sass**
   <br/>
-- [Avito Filters](#avito-filters-ru)
+- [Avito Filters](#avito-filters-ru)<br/>
   **Древовидное меню из чекбоксов, построенное с помощью "плоского" массива объектов, умное поведение чекбоксов, рекурсия, единственный компонент, который используется для "предков и наследников", SCSS/Sass.**
   <br/>
-- [Pokemons](#pokemons-ru)
+- [Pokemons](#pokemons-ru)<br/>
   **GRID сетка с маленьками ячейками, асинхронное обновление стейта, реальный запрос по url, пагинация, счетчик для пойманных покемонов, CSS Modules.**
   <br/>
-- [JetBrains Menu](#jetbrains-menu-ru)
+- [JetBrains Menu](#jetbrains-menu-ru)<br/>
   **Рекурсия, переиспользование компонентов, огромное количество данных, CSS Modules.**
   <br/>
-- [Gradient](#gradient-ru)
+- [Gradient](#gradient-ru)<br/>
   **Контроллируемые инпуты и связанные с ними соседние инпуты-вспомогатели, кнопка подтверждения, предупреждения при неправильных вводах, CSS Modules.**
+  <br/>
 
 ---
 
