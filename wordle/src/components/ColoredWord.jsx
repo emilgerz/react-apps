@@ -1,5 +1,5 @@
-import { lettersBackground } from '../functions/lettersBackground'
-import { status2color } from '../functions/satus2color'
+import { lettersBackground } from '../assets/functions/lettersBackground'
+import { status2color } from '../assets/functions/satus2color'
 
 export function ColoredWord({ word, hiddenWord }) {
 	const lettersBg = lettersBackground(word, hiddenWord)

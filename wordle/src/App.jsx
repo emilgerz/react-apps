@@ -1,21 +1,18 @@
-import { useReducer } from 'react'
-import { newKeyboardStyles } from './functions/newKeyboardStyles'
+import { useEffect, useReducer } from 'react'
+import { newKeyboardStyles } from './assets/functions/newKeyboardStyles'
 import { Keyboard } from './components/Keyboard'
 import { Table } from './components/Table'
+import { words } from './assets/words'
 import 'normalize.css'
 import './App.scss'
 
 const initialState = {
-	hiddenWord: 'WORLD',
+	hiddenWord: '',
 	enteredWords: [],
 	inputWord: '',
 }
 
 const reducer = (state = initialState, action) => {
-	if (state.enteredWords.includes(state.hiddenWord)) {
-		return state
-	}
-
 	switch (action.type) {
 		case 'ENTER_PRESS': {
 			const { inputWord } = state
@@ -31,7 +28,12 @@ const reducer = (state = initialState, action) => {
 		}
 
 		case 'LETTER_PRESS': {
-			const { inputWord } = state
+			const { inputWord, enteredWords, hiddenWord } = state
+
+			if (enteredWords.includes(hiddenWord)) {
+				return state
+			}
+
 			return {
 				...state,
 				inputWord: inputWord.length < 5 ? inputWord + action.letter : inputWord,
@@ -41,16 +43,27 @@ const reducer = (state = initialState, action) => {
 		case 'BS_PRESS': {
 			return { ...state, inputWord: state.inputWord.slice(0, -1) }
 		}
+
+		case 'SET_RANDOM_WORD': {
+			return { ...state, hiddenWord: words.at(action.value).toUpperCase() }
+		}
+
+		case 'RESET_STATE': {
+			return initialState
+		}
 	}
+
+	return state
 }
 
 function App() {
 	const [state, dispatch] = useReducer(reducer, initialState)
-	const { hiddenWord, enteredWords, inputWord } = state
-
-	console.log({ hiddenWord, enteredWords, inputWord })
 
 	const onLetterPress = (key) => {
+		if (state.enteredWords.includes(state.hiddenWord)) {
+			return
+		}
+
 		dispatch({ type: 'LETTER_PRESS', letter: key })
 	}
 
@@ -61,6 +74,19 @@ function App() {
 	const onEnterPress = () => {
 		dispatch({ type: 'ENTER_PRESS' })
 	}
+
+	const newWordHandler = () => {
+		const randomIndex = Math.floor(Math.random() * words.length + 1)
+
+		dispatch({ type: 'RESET_STATE' })
+		dispatch({ type: 'SET_RANDOM_WORD', value: randomIndex })
+	}
+
+	useEffect(() => {
+		newWordHandler()
+	}, [])
+
+	const { hiddenWord, enteredWords, inputWord } = state
 
 	const win = enteredWords.includes(hiddenWord)
 	const failed = !win && enteredWords.length === 6
@@ -99,6 +125,15 @@ function App() {
 					onBsPress={onBsPress}
 					letterColor={letterColor}
 				/>
+
+				{(failed || win) && (
+					<button
+						className="wordle__button-restart"
+						onClick={newWordHandler}
+					>
+						RECIEVE NEW WORD
+					</button>
+				)}
 			</div>
 		</>
 	)
