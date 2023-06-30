@@ -1,5 +1,6 @@
 import { ColoredWord } from './ColoredWord'
 import { EmptyStroke } from './EmptyStroke'
+import PropTypes from 'prop-types'
 import { Word } from './Word'
 
 export function Table({ enteredWords, inputWord, hiddenWord }) {
@@ -22,4 +23,10 @@ export function Table({ enteredWords, inputWord, hiddenWord }) {
 			))}
 		</div>
 	)
+}
+
+Table.propTypes = {
+	enteredWords: PropTypes.array,
+	inputWord: PropTypes.string,
+	hiddenWord: PropTypes.string,
 }

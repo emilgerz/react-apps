@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Backspace } from '../assets/svg/Backspace'
 import { status2color } from '../assets/functions/satus2color'
+import PropTypes from 'prop-types'
 
 const keyboardKeys = [
 	['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
@@ -87,4 +88,11 @@ export function Keyboard({ onLetterPress, onBsPress, onEnterPress, letterColor }
 			</div>
 		</div>
 	)
+}
+
+Keyboard.propTypes = {
+	onLetterPress: PropTypes.func,
+	onBsPress: PropTypes.func,
+	onEnterPress: PropTypes.func,
+	letterColor: PropTypes.object,
 }

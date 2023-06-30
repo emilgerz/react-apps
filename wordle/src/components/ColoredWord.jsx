@@ -1,5 +1,6 @@
 import { lettersBackground } from '../assets/functions/lettersBackground'
 import { status2color } from '../assets/functions/satus2color'
+import PropTypes from 'prop-types'
 
 export function ColoredWord({ word, hiddenWord }) {
 	const lettersBg = lettersBackground(word, hiddenWord)
@@ -16,4 +17,9 @@ export function ColoredWord({ word, hiddenWord }) {
 			))}
 		</div>
 	)
+}
+
+ColoredWord.propTypes = {
+	word: PropTypes.string,
+	hiddenWord: PropTypes.string,
 }

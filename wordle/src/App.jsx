@@ -51,19 +51,24 @@ const reducer = (state = initialState, action) => {
 		case 'RESET_STATE': {
 			return initialState
 		}
-	}
 
-	return state
+		default: {
+			return state
+		}
+	}
 }
 
 function App() {
 	const [state, dispatch] = useReducer(reducer, initialState)
+	const { hiddenWord, enteredWords, inputWord } = state
+
+	const win = enteredWords.includes(hiddenWord)
+	const failed = !win && enteredWords.length === 6
+
+	// Uncomment below this if you are weak
+	// console.log(hiddenWord)
 
 	const onLetterPress = (key) => {
-		if (state.enteredWords.includes(state.hiddenWord)) {
-			return
-		}
-
 		dispatch({ type: 'LETTER_PRESS', letter: key })
 	}
 
@@ -85,11 +90,6 @@ function App() {
 	useEffect(() => {
 		newWordHandler()
 	}, [])
-
-	const { hiddenWord, enteredWords, inputWord } = state
-
-	const win = enteredWords.includes(hiddenWord)
-	const failed = !win && enteredWords.length === 6
 
 	const letterColor = newKeyboardStyles(enteredWords, hiddenWord)
 

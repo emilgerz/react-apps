@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 export function Word({ inputWord }) {
 	return (
 		<div className="wordle__table__word">
@@ -14,4 +16,8 @@ export function Word({ inputWord }) {
 				))}
 		</div>
 	)
+}
+
+Word.propTypes = {
+	inputWord: PropTypes.string,
 }
