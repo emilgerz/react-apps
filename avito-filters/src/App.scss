@@ -12,10 +12,12 @@ body {
 
 	&__item {
 		position: relative;
+		line-height: 1.6;
 		list-style: none;
 
 		& a {
 			color: rgb(65, 147, 233);
+			margin-left: 5px;
 			text-decoration: none;
 
 			&:hover {
@@ -33,7 +35,7 @@ body {
 	display: block;
 	position: absolute;
 	top: 4px;
-	left: -15px;
+	left: -17px;
 	width: 13px;
 	height: 13px;
 	border: 0;

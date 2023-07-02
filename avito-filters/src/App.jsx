@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import data from './data/data.json'
 import { MenuList } from './components/MenuList'
-import 'modern-css-reset'
+import 'normalize.css'
 import './App.scss'
 
 function findAncestors(id, data) {

@@ -3,7 +3,7 @@ import { newKeyboardStyles } from './assets/functions/newKeyboardStyles'
 import { Keyboard } from './components/Keyboard'
 import { Table } from './components/Table'
 import { words } from './assets/words'
-import 'normalize.css'
+import 'modern-css-reset'
 import './App.scss'
 
 const initialState = {

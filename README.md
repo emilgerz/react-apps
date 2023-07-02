@@ -10,10 +10,10 @@
 
 ## ENG
 
-This is my bank of mini apps. Built on pure React.
+This is my bank of mini apps. Built on a pure React.
 
-These apps is useless but shows my coding style and what features I can implement.
-These apps is my past homeworks given by the mentor.
+These apps are useless but shows my coding style and what features I can implement.
+These apps are my past homeworks given by the mentor.
 
 Apps:
 
@@ -25,12 +25,12 @@ Apps:
   **useReducer & useEffect hooks, correct addEventListener on keyboard, UI colorization based on game logics, PropTypes, SCSS/Sass**
   <br/>
 
-- [Pokemons](#pokemons) <br/>
-  **GRID plate with little boxes, async state update, fetching data by url, pagination, count for caught pokemons, CSS Modules**
-  <br/>
-
 - [Avito Filters](#avito-filters) <br/>
   **Tree-menu built from json, smart checkbox-selecting, recursion, single component for every parent and his child, SCSS/Sass**
+  <br/>
+
+- [Pokemons](#pokemons) <br/>
+  **GRID plate with little boxes, async state update, fetching data by url, pagination, count for caught pokemons, CSS Modules**
   <br/>
 
 - [JetBrains Menu](#jetbrains-menu) <br/>
@@ -85,26 +85,12 @@ So if you select all childrens of one parent tree, parent's checkbox is setting 
 
 ---
 
-## Gradient
-
-### Explanation
-
-This is one of the simpliest apps here. It paints background to gradient betwen selected colors in inputs. <br/>
-**Controlled inputs with linked neighbour-input, confirmation button, alert for bad causes.**
-
-### How it works
-
-It works pretty simple: we have two controlled inputs here and button, that applies gradient with two selected colors to the background – background color changes immediately.
-On the right side of inputs we have a color-inputs – you can pick color there, so on the left-side input it changes to the selected color. In simple words: theese inputs are linked to each other.
-
----
-
 ## Pokemons
 
 ### Explanation
 
 Simple game without logics: this app just shows you how do I handle fetching data by link. <br/>
-**GRID plate with little boxes, async state update, fetching data by url, pagination, count for caught pokemons, CSS Modules.**
+**GRID plate with little boxes, useCallback, memo API, async state update, fetching data by url, pagination, count for caught pokemons, CSS Modules.**
 
 ### How it works
 
@@ -128,6 +114,20 @@ You can select some option – on the right side of screen you'll see openned pa
 
 ---
 
+## Gradient
+
+### Explanation
+
+This is one of the simpliest apps here. It paints background to gradient betwen selected colors in inputs. <br/>
+**Controlled inputs with linked neighbour-input, confirmation button, alert for bad causes.**
+
+### How it works
+
+It works pretty simple: we have two controlled inputs here and button, that applies gradient with two selected colors to the background – background color changes immediately.
+On the right side of inputs we have a color-inputs – you can pick color there, so on the left-side input it changes to the selected color. In simple words: theese inputs are linked to each other.
+
+---
+
 ---
 
 ## RUS
@@ -136,8 +136,8 @@ You can select some option – on the right side of screen you'll see openned pa
 
 Это – мои мини-приложения, собранные на чистом React без вспомогающих библиотек.
 
-Данные приложения в каком-то смысле бесполезны – они просто показывают мой стиль кода и какие задачи я могу решить.
-В приложениях есть и тестовые задания известных российскому рынку компаний, и полностью выдуманные приложения.
+Они в каком-то смысле бесполезны – они просто показывают мой стиль кода и какие задачи я могу решить.
+В приложениях есть и тестовые задания известных российскому рынку компаний и полностью выдуманные приложения.
 
 Данные приложения – мои домашние задания от ментора.
 
@@ -168,7 +168,7 @@ You can select some option – on the right side of screen you'll see openned pa
 
 ### Краткое описание
 
-Приложение CIAN Filters позволяет отфильтровать только нужные предложения банков на ипотеку <br/>
+Приложение CIAN Filters позволяет отфильтровать предложения банков на ипотеку <br/>
 **Множество контроллируемых инпутов, работа с данными из json, фильтрация данных, переиспользование компонентов, SCSS/Sass.**
 
 ### Как работает приложение
@@ -206,26 +206,12 @@ Wordle – это известная мини-игра по поиску сло�
 
 ---
 
-## Gradient RU
-
-### Краткое описание
-
-Одно из самых простейших приложений: разукрашивание фона градиентом с помощью двух инпутов. <br/>
-**Контроллируемые инпуты и связанные с ними соседние инпуты-вспомогатели, кнопка подтверждения, предупреждения при неправильных вводах, CSS Modules.**
-
-### Как работает приложение
-
-В приложении нет сложной логики: для backgroud-color: linear-gradient() нам надо получить 2 цвета. Они задаются вручную с помощью контроллируемых инпутов или вспомогательных соседний инпутов для цветов – вы видите код цвета в инпуте при выборе из вспомогательного.
-При нажатии на кнопку, цвет фона окрашивается в градиент выбранных цветов.
-
----
-
 ## Pokemons RU
 
 ### Краткое описание
 
 Простейшая игра без какой-либо логики – в этом приложении я показываю как обрабаываю реальный запрос по url, получаю json-файл и рисую компоненты на его основе. <br/>
-**GRID сетка с маленьками ячейками, асинхронное обновление стейта, реальный запрос по url, пагинация, счетчик для пойманных покемонов, CSS Modules.**
+**GRID сетка с маленьками ячейками, useCallback, memo API, асинхронное обновление стейта, реальный запрос по url, пагинация, счетчик для пойманных покемонов, CSS Modules.**
 
 ### Как работает приложение
 
@@ -248,6 +234,20 @@ Wordle – это известная мини-игра по поиску сло�
 Если выбрать какую-нибудь опцию в меню, то справа можно увидеть неработающую гиперссылку или id страницы, которую надо открыть.
 
 **[Вернуться наверх](#react-apps)**
+
+---
+
+## Gradient RU
+
+### Краткое описание
+
+Одно из самых простейших приложений: разукрашивание фона градиентом с помощью двух инпутов. <br/>
+**Контроллируемые инпуты и связанные с ними соседние инпуты-вспомогатели, кнопка подтверждения, предупреждения при неправильных вводах, CSS Modules.**
+
+### Как работает приложение
+
+В приложении нет сложной логики: для backgroud-color: linear-gradient() нам надо получить 2 цвета. Они задаются вручную с помощью контроллируемых инпутов или вспомогательных соседний инпутов для цветов – вы видите код цвета в инпуте при выборе из вспомогательного.
+При нажатии на кнопку, цвет фона окрашивается в градиент выбранных цветов.
 
 ---
 
