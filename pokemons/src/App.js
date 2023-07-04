@@ -1,83 +1,52 @@
-import { useState, useEffect, useCallback } from 'react'
-import './App.css'
+import { useEffect, useCallback } from 'react'
+import { connect } from 'react-redux'
 import PokemonButton from './components/PokemonButton'
 import { getPokemons } from './asyncGetPokemons'
 import { NextPage } from './components/NextPage'
+import './App.css'
 
 const savePokemonStatus = () => new Promise((r) => setTimeout(r, 1000))
 
-function App() {
-	const [data, setData] = useState([])
-	const [pokemonsIds, setpokemonsIds] = useState([])
-	const [page, setPage] = useState(0)
+// В сторе использовал new Set() для айдишников покемонов – почему-то не обновлялся стейт
 
-	console.log(
-		`%cAPP`,
-		'color: blue; font-size: 2em; font-weight: bolder; text-shadow: #000 1px 1px;'
-	)
+function App_pure(props) {
+	const { pokemons, catchNewPokemon, pageBack, pageForward, recieveData } = props
 
 	const handleNextPage = () => {
-		setPage(page + 1)
-		// handleClickNextPage(page + 1)
+		pageForward()
 	}
 
 	const handlePrevPage = () => {
-		setPage(page - 1)
-		// handleClickNextPage(page - 1)
+		pageBack()
 	}
 
-	// const handleClick = () => {
-	// 	handleClickNextPage(0)
-	// }
-
 	useEffect(() => {
-		getPokemons(page).then((x) => setData(x))
-	}, [page])
+		getPokemons(pokemons.currentPage).then((x) => recieveData(x))
+	}, [pokemons.currentPage])
 
 	const catchPokemon = useCallback(async (id) => {
 		await savePokemonStatus()
 
-		setpokemonsIds((prev) => {
-			if (prev.includes(id)) {
-				return prev.filter((pokemonID) => pokemonID !== id)
-			}
-
-			return [...prev, id]
-		})
+		catchNewPokemon(id)
 	}, [])
 
 	return (
 		<>
-			{/* С выключением кнопки "Загрузить покемонов"
-			{data.length === 0 && (
-				<button
-					onClick={handleClick}
-					className="get-pokemons-button"
-				>
-					Загрузить покемонов
-				</button>
-			)} */}
-			{/* <button
-				onClick={handleClick}
-				className="get-pokemons-button"
-			>
-				Загрузить покемонов
-			</button> */}
-			<h1 className="counter">Поймано покемонов: {pokemonsIds.length}</h1>
+			<h1 className="counter">Поймано покемонов: {pokemons.pokemonIds.length}</h1>
 			<div className="App">
-				{data.map((pokemon) => (
+				{pokemons.data.map((pokemon) => (
 					<PokemonButton
+						key={pokemon.id}
 						name={pokemon.name}
 						id={pokemon.id}
 						onClick={catchPokemon}
-						caught={pokemonsIds.includes(pokemon.id)}
+						caught={pokemons.pokemonIds.includes(pokemon.id)}
 					/>
 				))}
 			</div>
 			<div className="page-buttons">
 				<NextPage
-					page={page}
-					setStepState={setPage}
+					page={pokemons.currentPage}
 					nextPage={handleNextPage}
 					prevPage={handlePrevPage}
 				/>
@@ -86,4 +55,34 @@ function App() {
 	)
 }
 
-export default App
+const mapStateToProps = (state) => {
+	return { pokemons: state }
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		recieveData: (data) =>
+			dispatch({
+				type: 'RECIEVE_POKEMONS_DATA',
+				value: data,
+			}),
+
+		catchNewPokemon: (id) =>
+			dispatch({
+				type: 'PUSH_POKEMON_ID',
+				value: id,
+			}),
+
+		pageForward: () =>
+			dispatch({
+				type: 'PAGE_FORWARD',
+			}),
+
+		pageBack: () =>
+			dispatch({
+				type: 'PAGE_BACK',
+			}),
+	}
+}
+
+export const App = connect(mapStateToProps, mapDispatchToProps)(App_pure)

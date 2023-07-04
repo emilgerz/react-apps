@@ -5,26 +5,15 @@ import './PokemonButton.css'
 const cn = (...args) => args.filter(Boolean).join(' ')
 
 function PokemonButton(props) {
-	// const [caught, setCaught] = useState(false)
 	const { name, id, onClick, caught } = props
 	const url = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
 
-	console.log(
-		`%c${name}!`,
-		'color: red; font-size: 1.5em; font-weight: bolder; text-shadow: #000 1px 1px;'
-	)
-
 	const handleClick = () => {
 		onClick(id)
-		// setCaught(!caught)
 	}
 
 	return (
-		<div
-			className={cn('circle', caught && 'circleCaught')}
-			// className={caught ? 'circle' : 'circle circleCaught'}
-			// style={{ backgroundColor: caught ? 'red' : 'green' }}
-		>
+		<div className={cn('circle', caught && 'circleCaught')}>
 			<p className="pokemon-name">{name}</p>
 			<img
 				src={url}
