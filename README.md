@@ -30,16 +30,16 @@ Apps:
   <br/>
 
 - [Pokemons](#pokemons) <br/>
-  **GRID plate with little boxes, async state update, fetching data by url, pagination, count for caught pokemons, CSS Modules**
+  **Redux, GRID plate with little boxes, async state update, fetching data by url, pagination, count for caught pokemons, CSS Modules**
   <br/>
 
 - [JetBrains Menu](#jetbrains-menu) <br/>
   **Recursion, reused components, large data, CSS Modules**
   <br/>
 
-- [Gradient](#gradient) <br/>
+<!-- - [Gradient](#gradient) <br/>
   **Controlled inputs with linked neighbour-input, confirmation button, alert for bad causes**
-  <br/>
+  <br/> -->
 
 ---
 
@@ -112,7 +112,7 @@ Big tree-like menu from JetBrains website. Originaly, it helps navigate in a hug
 We have here huge json file, like 30,000 strokes. We just draw menu with that options, what we have in json file: every option has his id, anchors, inner pages and so on.
 You can select some option – on the right side of screen you'll see openned page's id or anchors, depends on what exactly did you select.
 
----
+<!-- ---
 
 ## Gradient
 
@@ -124,7 +124,7 @@ This is one of the simpliest apps here. It paints background to gradient betwen 
 ### How it works
 
 It works pretty simple: we have two controlled inputs here and button, that applies gradient with two selected colors to the background – background color changes immediately.
-On the right side of inputs we have a color-inputs – you can pick color there, so on the left-side input it changes to the selected color. In simple words: theese inputs are linked to each other.
+On the right side of inputs we have a color-inputs – you can pick color there, so on the left-side input it changes to the selected color. In simple words: theese inputs are linked to each other. -->
 
 ---
 
@@ -153,14 +153,14 @@ On the right side of inputs we have a color-inputs – you can pick color there,
   **Древовидное меню из чекбоксов, построенное с помощью "плоского" массива объектов, умное поведение чекбоксов, рекурсия, единственный компонент, который используется для "предков и наследников", SCSS/Sass.**
   <br/>
 - [Pokemons](#pokemons-ru)<br/>
-  **GRID сетка с маленьками ячейками, асинхронное обновление стейта, реальный запрос по url, пагинация, счетчик для пойманных покемонов, CSS Modules.**
+  **Redux, GRID сетка с маленьками ячейками, асинхронное обновление стейта, реальный запрос по url, пагинация, счетчик для пойманных покемонов, CSS Modules.**
   <br/>
 - [JetBrains Menu](#jetbrains-menu-ru)<br/>
-  **Рекурсия, переиспользование компонентов, огромное количество данных, CSS Modules.**
-  <br/>
-- [Gradient](#gradient-ru)<br/>
+**Рекурсия, переиспользование компонентов, огромное количество данных, CSS Modules.**
+<br/>
+<!-- - [Gradient](#gradient-ru)<br/>
   **Контроллируемые инпуты и связанные с ними соседние инпуты-вспомогатели, кнопка подтверждения, предупреждения при неправильных вводах, CSS Modules.**
-  <br/>
+  <br/> -->
 
 ---
 
@@ -235,7 +235,7 @@ Wordle – это известная мини-игра по поиску сло�
 
 **[Вернуться наверх](#react-apps)**
 
----
+<!-- ---
 
 ## Gradient RU
 
@@ -247,7 +247,7 @@ Wordle – это известная мини-игра по поиску сло�
 ### Как работает приложение
 
 В приложении нет сложной логики: для backgroud-color: linear-gradient() нам надо получить 2 цвета. Они задаются вручную с помощью контроллируемых инпутов или вспомогательных соседний инпутов для цветов – вы видите код цвета в инпуте при выборе из вспомогательного.
-При нажатии на кнопку, цвет фона окрашивается в градиент выбранных цветов.
+При нажатии на кнопку, цвет фона окрашивается в градиент выбранных цветов. -->
 
 ---
 

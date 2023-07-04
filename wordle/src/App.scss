@@ -51,6 +51,15 @@
 				padding: 15px;
 				font-size: 30px;
 				font-weight: 700;
+
+				&-jump {
+					animation: 0.1s ease-in-out 1 alternate letter-jump;
+				}
+
+				&-result {
+					animation: 0.2s ease-in-out 1 forwards letter-result;
+					backface-visibility: hidden;
+				}
 			}
 		}
 	}
@@ -96,5 +105,33 @@
 			text-decoration: none;
 			cursor: pointer;
 		}
+	}
+}
+
+@keyframes letter-jump {
+	0% {
+		scale: 1;
+	}
+
+	50% {
+		scale: 1.1;
+	}
+
+	100% {
+		scale: 1;
+	}
+}
+
+@keyframes letter-result {
+	0% {
+		rotate: x 0deg;
+	}
+
+	50% {
+		rotate: x 180deg;
+	}
+
+	100% {
+		rotate: x 360deg;
 	}
 }

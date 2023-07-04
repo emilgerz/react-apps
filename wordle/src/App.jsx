@@ -2,7 +2,7 @@ import { useEffect, useReducer } from 'react'
 import { newKeyboardStyles } from './assets/functions/newKeyboardStyles'
 import { Keyboard } from './components/Keyboard'
 import { Table } from './components/Table'
-import { words } from './assets/words'
+import { wordsBank } from './assets/wordsBank'
 import 'modern-css-reset'
 import './App.scss'
 
@@ -10,6 +10,7 @@ const initialState = {
 	hiddenWord: '',
 	enteredWords: [],
 	inputWord: '',
+	// wrongWord: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -23,7 +24,8 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				inputWord: '',
-				enteredWords: [...state.enteredWords, state.inputWord],
+				enteredWords: [...state.enteredWords, inputWord],
+				// wrongWord: false,
 			}
 		}
 
@@ -45,12 +47,16 @@ const reducer = (state = initialState, action) => {
 		}
 
 		case 'SET_RANDOM_WORD': {
-			return { ...state, hiddenWord: words.at(action.value).toUpperCase() }
+			return { ...state, hiddenWord: wordsBank.at(action.value).toUpperCase() }
 		}
 
 		case 'RESET_STATE': {
 			return initialState
 		}
+
+		// case 'WRONG_WORD': {
+		// 	return { ...state, wrongWord: true }
+		// }
 
 		default: {
 			return state
@@ -77,11 +83,17 @@ function App() {
 	}
 
 	const onEnterPress = () => {
+		console.log({ inputWord })
+		// if (!wordsBank.includes(inputWord)) {
+		// 	dispatch({ type: 'WRONG_WORD' })
+		// 	return
+		// }
+
 		dispatch({ type: 'ENTER_PRESS' })
 	}
 
 	const newWordHandler = () => {
-		const randomIndex = Math.floor(Math.random() * words.length + 1)
+		const randomIndex = Math.floor(Math.random() * wordsBank.length + 1)
 
 		dispatch({ type: 'RESET_STATE' })
 		dispatch({ type: 'SET_RANDOM_WORD', value: randomIndex })
@@ -111,7 +123,7 @@ function App() {
 
 			<div className="wordle">
 				{failed && <p className="wordle__result">{hiddenWord}</p>}
-				{win && <p className="wordle__result">WIN</p>}
+				{win && <p className="wordle__result">🎉 WIN 🎉</p>}
 
 				<Table
 					enteredWords={enteredWords}
