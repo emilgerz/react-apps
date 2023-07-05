@@ -1,15 +1,25 @@
 import { memo } from 'react'
 import './PokemonButton.css'
+import { useDispatch } from 'react-redux'
 
 // https://www.npmjs.com/package/classnames
 const cn = (...args) => args.filter(Boolean).join(' ')
 
+const savePokemonStatus = () => new Promise((r) => setTimeout(r, 1000))
+
 function PokemonButton(props) {
-	const { name, id, onClick, caught } = props
+	const { name, id, caught } = props
 	const url = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
 
-	const handleClick = () => {
-		onClick(id)
+	const dispatch = useDispatch()
+
+	const handleClick = async () => {
+		await savePokemonStatus()
+
+		dispatch({
+			type: 'PUSH_POKEMON_ID',
+			value: id,
+		})
 	}
 
 	return (

@@ -5,51 +5,34 @@ import { getPokemons } from './asyncGetPokemons'
 import { NextPage } from './components/NextPage'
 import './App.css'
 
-const savePokemonStatus = () => new Promise((r) => setTimeout(r, 1000))
-
 // В сторе использовал new Set() для айдишников покемонов – почему-то не обновлялся стейт
 
+// Я законнектил к стору только этот компонент, это ок? В детях использовал useDispatch()
+
 function App_pure(props) {
-	const { pokemons, catchNewPokemon, pageBack, pageForward, recieveData } = props
-
-	const handleNextPage = () => {
-		pageForward()
-	}
-
-	const handlePrevPage = () => {
-		pageBack()
-	}
+	const { pokemons, recieveData } = props
 
 	useEffect(() => {
 		getPokemons(pokemons.currentPage).then((x) => recieveData(x))
 	}, [pokemons.currentPage])
 
-	const catchPokemon = useCallback(async (id) => {
-		await savePokemonStatus()
-
-		catchNewPokemon(id)
-	}, [])
-
 	return (
 		<>
 			<h1 className="counter">Поймано покемонов: {pokemons.pokemonIds.length}</h1>
+
 			<div className="App">
 				{pokemons.data.map((pokemon) => (
 					<PokemonButton
 						key={pokemon.id}
 						name={pokemon.name}
 						id={pokemon.id}
-						onClick={catchPokemon}
 						caught={pokemons.pokemonIds.includes(pokemon.id)}
 					/>
 				))}
 			</div>
+
 			<div className="page-buttons">
-				<NextPage
-					page={pokemons.currentPage}
-					nextPage={handleNextPage}
-					prevPage={handlePrevPage}
-				/>
+				<NextPage page={pokemons.currentPage} />
 			</div>
 		</>
 	)
@@ -67,21 +50,21 @@ const mapDispatchToProps = (dispatch) => {
 				value: data,
 			}),
 
-		catchNewPokemon: (id) =>
-			dispatch({
-				type: 'PUSH_POKEMON_ID',
-				value: id,
-			}),
+		// catchNewPokemon: (id) =>
+		// 	dispatch({
+		// 		type: 'PUSH_POKEMON_ID',
+		// 		value: id,
+		// 	}),
 
-		pageForward: () =>
-			dispatch({
-				type: 'PAGE_FORWARD',
-			}),
+		// pageForward: () =>
+		// 	dispatch({
+		// 		type: 'PAGE_FORWARD',
+		// 	}),
 
-		pageBack: () =>
-			dispatch({
-				type: 'PAGE_BACK',
-			}),
+		// pageBack: () =>
+		// 	dispatch({
+		// 		type: 'PAGE_BACK',
+		// 	}),
 	}
 }
 
