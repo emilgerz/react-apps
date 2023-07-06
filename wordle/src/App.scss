@@ -16,17 +16,33 @@
 		font-weight: 500;
 	}
 
-	&__button-restart {
-		margin-top: 10px;
-		padding: 10px;
-		font-size: 20px;
-		border: 2px solid #d2d2d2;
-		border-radius: 5px;
-		font-weight: 500;
+	&__button {
+		margin-top: 7px;
+		margin-left: 10px;
 		cursor: pointer;
+		padding: 0 10px;
+		font-size: 26px;
+		border-radius: 50px;
+		border: 2px solid #d2d2d2;
+		width: 50px;
+		height: 50px;
 
 		&:active {
 			background-color: #d2d2d2;
+		}
+
+		&-restart {
+			margin-top: 10px;
+			padding: 10px;
+			font-size: 20px;
+			border: 2px solid #d2d2d2;
+			border-radius: 5px;
+			font-weight: 500;
+			cursor: pointer;
+
+			&:active {
+				background-color: #d2d2d2;
+			}
 		}
 	}
 
@@ -40,6 +56,10 @@
 			width: 335px;
 			height: 65px;
 			justify-content: space-between;
+
+			&-wrong {
+				animation: 0.1s linear 1 alternate wrong-word;
+			}
 
 			&__letter {
 				display: flex;
@@ -94,8 +114,11 @@
 }
 
 .heading {
-	margin-top: 30px;
+	margin: 30px 0 0 50px;
 	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
 
 	& > h3,
 	h1 {
@@ -104,6 +127,73 @@
 		& > a {
 			text-decoration: none;
 			cursor: pointer;
+		}
+	}
+
+	& > h3 {
+		font-size: 18px;
+	}
+}
+
+.logo {
+	margin: 0 auto;
+	display: block;
+	height: 60px;
+}
+
+.overflow {
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.tutorial {
+	border-radius: 10px;
+	background-color: #fff;
+	width: 500px;
+	height: 400px;
+	padding: 20px;
+	margin: 100px auto;
+
+	&__button {
+		text-align: end;
+
+		& > button {
+			cursor: pointer;
+			padding: 0 10px;
+			font-size: 20px;
+			border-radius: 50px;
+			border: 2px solid #d2d2d2;
+			width: 40px;
+			height: 40px;
+
+			&:active {
+				background-color: #bebebe;
+			}
+		}
+	}
+
+	&__content {
+		margin-top: 20px;
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+
+		& > ul {
+			padding-left: 20px;
+		}
+
+		&__pic {
+			margin: 0 auto;
+			display: block;
+			width: 300px;
+		}
+
+		& span {
+			font-weight: 700;
 		}
 	}
 }
@@ -133,5 +223,23 @@
 
 	100% {
 		rotate: x 360deg;
+	}
+}
+
+@keyframes wrong-word {
+	0% {
+		translate: 15px;
+	}
+
+	33% {
+		translate: 0px;
+	}
+
+	67% {
+		translate: -15px;
+	}
+
+	100% {
+		translate: 0px;
 	}
 }

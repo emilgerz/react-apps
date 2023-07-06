@@ -3,14 +3,18 @@ import { newKeyboardStyles } from './assets/functions/newKeyboardStyles'
 import { Keyboard } from './components/Keyboard'
 import { Table } from './components/Table'
 import { wordsBank } from './assets/wordsBank'
+import { createPortal } from 'react-dom'
+import { TutorialModal } from './components/TutorialModal'
 import 'modern-css-reset'
 import './App.scss'
+import logo from './assets/img/logo.png'
 
 const initialState = {
 	hiddenWord: '',
 	enteredWords: [],
 	inputWord: '',
-	// wrongWord: false,
+	tutorialModal: false,
+	// isWrongWord: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -21,11 +25,15 @@ const reducer = (state = initialState, action) => {
 				return state
 			}
 
+			// if (!wordsBank.includes(inputWord)) {
+			// 	return { ...state, isWrongWord: true }
+			// }
+
 			return {
 				...state,
 				inputWord: '',
 				enteredWords: [...state.enteredWords, inputWord],
-				// wrongWord: false,
+				// isWrongWord: false,
 			}
 		}
 
@@ -39,6 +47,7 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				inputWord: inputWord.length < 5 ? inputWord + action.letter : inputWord,
+				// isWrongWord: false,
 			}
 		}
 
@@ -50,13 +59,13 @@ const reducer = (state = initialState, action) => {
 			return { ...state, hiddenWord: wordsBank.at(action.value).toUpperCase() }
 		}
 
+		case 'READ_TUTORIAL': {
+			return { ...state, tutorialModal: !state.tutorialModal }
+		}
+
 		case 'RESET_STATE': {
 			return initialState
 		}
-
-		// case 'WRONG_WORD': {
-		// 	return { ...state, wrongWord: true }
-		// }
 
 		default: {
 			return state
@@ -66,13 +75,13 @@ const reducer = (state = initialState, action) => {
 
 function App() {
 	const [state, dispatch] = useReducer(reducer, initialState)
-	const { hiddenWord, enteredWords, inputWord } = state
+	const { hiddenWord, enteredWords, inputWord, tutorialModal } = state
 
 	const win = enteredWords.includes(hiddenWord)
 	const failed = !win && enteredWords.length === 6
 
 	// Uncomment below this if you are weak
-	// console.log(hiddenWord)
+	console.log(state)
 
 	const onLetterPress = (key) => {
 		dispatch({ type: 'LETTER_PRESS', letter: key })
@@ -83,12 +92,6 @@ function App() {
 	}
 
 	const onEnterPress = () => {
-		console.log({ inputWord })
-		// if (!wordsBank.includes(inputWord)) {
-		// 	dispatch({ type: 'WRONG_WORD' })
-		// 	return
-		// }
-
 		dispatch({ type: 'ENTER_PRESS' })
 	}
 
@@ -105,20 +108,37 @@ function App() {
 
 	const letterColor = newKeyboardStyles(enteredWords, hiddenWord)
 
+	const tutorialHandler = () => {
+		dispatch({ type: 'READ_TUTORIAL' })
+	}
+
 	return (
 		<>
 			<div className="heading">
-				<h1>WORDLE</h1>
-				<h3>
-					by{' '}
-					<a
-						href="https://github.com/emilgerz"
-						target="_blank"
-						rel="noreferrer"
-					>
-						@emilgerz
-					</a>
-				</h3>
+				<div>
+					<img
+						className="logo"
+						src={logo}
+						alt="Wordle Logo"
+					/>
+					<h3>
+						by{' '}
+						<a
+							href="https://github.com/emilgerz"
+							target="_blank"
+							rel="noreferrer"
+						>
+							@emilgerz
+						</a>
+					</h3>
+				</div>
+
+				<button
+					className="wordle__button"
+					onClick={tutorialHandler}
+				>
+					?
+				</button>
 			</div>
 
 			<div className="wordle">
@@ -129,6 +149,7 @@ function App() {
 					enteredWords={enteredWords}
 					inputWord={inputWord}
 					hiddenWord={hiddenWord}
+					// isWrongWord={isWrongWord}
 				/>
 
 				<Keyboard
@@ -146,6 +167,8 @@ function App() {
 						RECIEVE NEW WORD
 					</button>
 				)}
+
+				{tutorialModal && createPortal(<TutorialModal tutorialHandler={tutorialHandler} />, document.body)}
 			</div>
 		</>
 	)
