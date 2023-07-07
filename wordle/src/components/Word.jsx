@@ -1,16 +1,15 @@
 import PropTypes from 'prop-types'
 
-// const classNames = (...classes) => classes.filter(Boolean).join(' ')
+const classNames = (...classes) => classes.filter(Boolean).join(' ')
 
-export function Word({ inputWord /* isWrongWord */ }) {
+export function Word({ inputWord, isCorrectWord }) {
 	const regularStyle = 'wordle__table__word__letter'
 	const animatedStyle = `${regularStyle} wordle__table__word__letter-jump`
 
+	console.log(isCorrectWord)
+
 	return (
-		<div
-			// className={classNames('wordle__table__word', isWrongWord && 'wordle__table__word-wrong')}
-			className="wordle__table__word"
-		>
+		<div className={classNames('wordle__table__word', isCorrectWord && 'wordle__table__word-wrong')}>
 			{Array(5)
 				.fill()
 				.map((_, i) => (
@@ -28,4 +27,5 @@ export function Word({ inputWord /* isWrongWord */ }) {
 
 Word.propTypes = {
 	inputWord: PropTypes.string,
+	isCorrectWord: PropTypes.bool,
 }

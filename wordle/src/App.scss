@@ -58,7 +58,7 @@
 			justify-content: space-between;
 
 			&-wrong {
-				animation: 0.1s linear 1 alternate wrong-word;
+				animation: 0.1s linear 1 forwards wrong-word;
 			}
 
 			&__letter {
@@ -154,7 +154,7 @@
 	border-radius: 10px;
 	background-color: #fff;
 	width: 500px;
-	height: 400px;
+	height: fit-content;
 	padding: 20px;
 	margin: 100px auto;
 
@@ -182,8 +182,14 @@
 		flex-direction: column;
 		gap: 15px;
 
-		& > ul {
-			padding-left: 20px;
+		& > div {
+			& > h2 {
+				text-align: center;
+			}
+
+			& > ul {
+				padding-left: 20px;
+			}
 		}
 
 		&__pic {

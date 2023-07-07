@@ -1,4 +1,5 @@
 import tutorialPic from '../assets/img/tutorial-pic.png'
+import PropTypes from 'prop-types'
 
 export const TutorialModal = ({ tutorialHandler }) => {
 	return (
@@ -10,12 +11,14 @@ export const TutorialModal = ({ tutorialHandler }) => {
 
 				<div className="tutorial__content">
 					<div>
-						<h4>Guess the Wordle in 6 tries.</h4>
+						<h2>Guess the Wordle in 6 tries.</h2>
 						<ul>
 							<li>Each guess must be a valid 5-letter word.</li>
 							<li>The color of the tiles will change to show how close your guess was to the word.</li>
 						</ul>
 					</div>
+
+					<h3>Example:</h3>
 
 					<img
 						className="tutorial__content__pic"
@@ -38,4 +41,8 @@ export const TutorialModal = ({ tutorialHandler }) => {
 			</div>
 		</div>
 	)
+}
+
+TutorialModal.propTypes = {
+	tutorialHandler: PropTypes.bool,
 }

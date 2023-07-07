@@ -14,26 +14,27 @@ const initialState = {
 	enteredWords: [],
 	inputWord: '',
 	tutorialModal: false,
-	// isWrongWord: false,
+	isCorrectWord: false,
 }
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case 'ENTER_PRESS': {
 			const { inputWord } = state
+
 			if (inputWord.length !== 5) {
 				return state
 			}
 
-			// if (!wordsBank.includes(inputWord)) {
-			// 	return { ...state, isWrongWord: true }
-			// }
+			if (!action.words.includes(inputWord.toLowerCase())) {
+				return { ...state, isCorrectWord: true }
+			}
 
 			return {
 				...state,
 				inputWord: '',
 				enteredWords: [...state.enteredWords, inputWord],
-				// isWrongWord: false,
+				isCorrectWord: false,
 			}
 		}
 
@@ -47,7 +48,7 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				inputWord: inputWord.length < 5 ? inputWord + action.letter : inputWord,
-				// isWrongWord: false,
+				isCorrectWord: false,
 			}
 		}
 
@@ -75,13 +76,13 @@ const reducer = (state = initialState, action) => {
 
 function App() {
 	const [state, dispatch] = useReducer(reducer, initialState)
-	const { hiddenWord, enteredWords, inputWord, tutorialModal } = state
+	const { hiddenWord, enteredWords, inputWord, tutorialModal, isCorrectWord } = state
 
 	const win = enteredWords.includes(hiddenWord)
 	const failed = !win && enteredWords.length === 6
 
-	// Uncomment below this if you are weak
-	console.log(state)
+	// Uncomment below to see hints
+	// console.log(state)
 
 	const onLetterPress = (key) => {
 		dispatch({ type: 'LETTER_PRESS', letter: key })
@@ -92,7 +93,7 @@ function App() {
 	}
 
 	const onEnterPress = () => {
-		dispatch({ type: 'ENTER_PRESS' })
+		dispatch({ type: 'ENTER_PRESS', words: wordsBank })
 	}
 
 	const newWordHandler = () => {
@@ -144,12 +145,13 @@ function App() {
 			<div className="wordle">
 				{failed && <p className="wordle__result">{hiddenWord}</p>}
 				{win && <p className="wordle__result">🎉 WIN 🎉</p>}
+				{isCorrectWord && <p className="wordle__result">❌ INCORRECT WORD ❌</p>}
 
 				<Table
 					enteredWords={enteredWords}
 					inputWord={inputWord}
 					hiddenWord={hiddenWord}
-					// isWrongWord={isWrongWord}
+					isCorrectWord={isCorrectWord}
 				/>
 
 				<Keyboard
@@ -157,6 +159,7 @@ function App() {
 					onEnterPress={onEnterPress}
 					onBsPress={onBsPress}
 					letterColor={letterColor}
+					tutorialModal={tutorialModal}
 				/>
 
 				{(failed || win) && (

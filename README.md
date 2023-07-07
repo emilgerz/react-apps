@@ -43,6 +43,20 @@ Apps:
 
 ---
 
+## WORDLE
+
+### Explanation
+
+Famous mini-game to find out what 6-letters word was hidden <br/>
+**createPortal, useReducer & useEffect hooks, correct addEventListener on keyboard, UI colorization based on game logics, PropTypes, SCSS/Sass**
+
+### How it works
+
+Wordle - its a mini-game. You have to find out hidden word. Originaly, hidden word updates once in a 24 hours – but in my game it changes after game end`s.
+You have 6 tries to find him, every try will give you clue on strokes and keyboard – green background means you caught correct letter in his original place, yellow background means that this letter includes in hidden word, but not in exactly that place, grey background means that this letter is not correct and not includes in hidden word.
+
+---
+
 ## CIAN Filters
 
 ### Explanation
@@ -54,20 +68,6 @@ CIAN Filters built to find mortgage for your future house. <br/>
 
 The application is configured to search for suitable offers from banks. The offers themselves and all information about the bank are stored in a large json file.
 The interface is built from controlled reused inputs. Each input has its own state. All states are connected together and checked at the same time using a helper function. This function selects suitable bank offers and displays them in the interface.
-
----
-
-## WORDLE
-
-### Explanation
-
-Famous mini-game to find out what 6-letters word was hidden <br/>
-**useReducer & useEffect hooks, correct addEventListener on keyboard, UI colorization based on game logics, PropTypes, SCSS/Sass**
-
-### How it works
-
-Wordle - its a mini-game. You have to find out hidden word. Originaly, hidden word updates once in a 24 hours – but in my game it changes after game end`s.
-You have 6 tries to find him, every try will give you clue on strokes and keyboard – green background means you caught correct letter in his original place, yellow background means that this letter includes in hidden word, but not in exactly that place, grey background means that this letter is not correct and not includes in hidden word.
 
 ---
 
@@ -95,7 +95,7 @@ Simple game without logics: this app just shows you how do I handle fetching dat
 ### How it works
 
 We have pokemons on the interface. Pokemon's data comes with link: name, his id, picture and else.
-We can catch Pokemon, but it costs 1 sec. To handle delay, I used hook useState with callback inside, because delay action is asynchronous (setTimeout).
+We can catch Pokemon, but it costs 0.5 sec. To handle delay, I used hook useState with callback inside, because delay action is asynchronous (setTimeout).
 We also have pagination here – you can look around and pick another pokemon, if you dont like pokemons on the current page.
 
 ---
@@ -164,6 +164,20 @@ On the right side of inputs we have a color-inputs – you can pick color there,
 
 ---
 
+## WORDLE RU
+
+### Краткое описание
+
+Известная мини-игра: ваша задача – найти загадочное слово за 6 попыток с нативными подсказками. <br/>
+**createPortal, useReducer & useEffect хуки, корректный addEventListener на клавиатуре, окрашивание UI опираясь на игровую логику, PropTypes, SCSS/Sass**
+
+### Как работает приложение
+
+Wordle – это известная мини-игра по поиску слова. Не переживайте – с подсказками на экране угадать слово будет не сложно.
+У вас есть 6 попыток, чтобы угадать слово. Каждая попытка будет давать вам подскаку в вводимой строке и виртуальной клавиатуре – зеленый фон буквы значит, что буква угадана в нужном месте, желтый фон – что буква угадана, но ее расположение иное, серый фон – что буква отстуствует в слове.
+
+---
+
 ## CIAN Filters RU
 
 ### Краткое описание
@@ -175,20 +189,6 @@ On the right side of inputs we have a color-inputs – you can pick color there,
 
 Приложение имеет множество контроллируемых инпутов, с помощью которых ищется множество подходящих предложений из json-файла.
 У каждого компонента есть свой стейт, который передается корневому компоненту. Корневой компонент принимает все стейты и формирует массив подходящих предложений, а потом отрисовывает их в интерфейсе.
-
----
-
-## WORDLE RU
-
-### Краткое описание
-
-Известная мини-игра: ваша задача – найти загадочное слово за 6 попыток с нативными подсказками. <br/>
-**useReducer & useEffect хуки, корректный addEventListener на клавиатуре, окрашивание UI опираясь на игровую логику, PropTypes, SCSS/Sass**
-
-### Как работает приложение
-
-Wordle – это известная мини-игра по поиску слова. Не переживайте – с подсказками на экране угадать слово будет не сложно.
-У вас есть 6 попыток, чтобы угадать слово. Каждая попытка будет давать вам подскаку в вводимой строке и виртуальной клавиатуре – зеленый фон буквы значит, что буква угадана в нужном месте, желтый фон – что буква угадана, но ее расположение иное, серый фон – что буква отстуствует в слове.
 
 ---
 
@@ -216,7 +216,7 @@ Wordle – это известная мини-игра по поиску сло�
 ### Как работает приложение
 
 У нас есть ссылка с данными покемонов: их id, имя, аватаркой и так далее. Фетчим эти данные по кнопке и отрисовываем интерфейс.
-Мы можем поймать любого покемона, но поимка длится 1 секунду из-за setTimeout. Во время этого окна можно поймать и другого или нескольких – при этом стейт обновится правильно, пойманы будут все.
+Мы можем поймать любого покемона, но поимка длится 0.5 секунды из-за setTimeout. Во время этого окна можно поймать и другого или нескольких – при этом стейт обновится правильно, пойманы будут все.
 У нас есть и пагинация чтобы выбрать какого-нибудь другого покемона, она работает с помощью useEffect и обновляет стейт с покемонами новым списком.
 
 ---
