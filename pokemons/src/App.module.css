@@ -1,4 +1,4 @@
-.App {
+.app {
 	width: 700px;
 	height: 700px;
 	display: grid;
@@ -9,7 +9,7 @@
 	margin: 0 auto;
 	text-align: center;
 }
-
+/* 
 .get-pokemons-button {
 	display: block;
 	margin: 10px auto;
@@ -18,9 +18,9 @@
 	background-color: yellow;
 	border-radius: 5px;
 	border: 0;
-}
+} */
 
-.get-pokemons-button:active {
+.getPokemonsButton:active {
 	box-shadow: inset 1px 1px 10px 1px;
 }
 
@@ -29,7 +29,7 @@
 	color: white;
 }
 
-.page-buttons {
+.pageButtons {
 	margin: 5px auto;
 	width: fit-content;
 	display: grid;
@@ -37,12 +37,4 @@
 	grid-column-start: 2;
 	align-items: center;
 	justify-items: center;
-}
-
-.grid-prev-btn {
-	grid-column-start: 1;
-}
-
-.grid-next-btn {
-	grid-column-start: 3;
 }

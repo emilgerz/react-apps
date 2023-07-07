@@ -1,15 +1,17 @@
 import { memo } from 'react'
-import './PokemonButton.css'
+import styles from './PokemonButton.module.css'
 import { useDispatch } from 'react-redux'
 
 // https://www.npmjs.com/package/classnames
 const cn = (...args) => args.filter(Boolean).join(' ')
 
-const savePokemonStatus = () => new Promise((r) => setTimeout(r, 1000))
+const savePokemonStatus = () => new Promise((r) => setTimeout(r, 500))
 
 function PokemonButton(props) {
 	const { name, id, caught } = props
 	const url = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+
+	console.log('i rend')
 
 	const dispatch = useDispatch()
 
@@ -23,14 +25,14 @@ function PokemonButton(props) {
 	}
 
 	return (
-		<div className={cn('circle', caught && 'circleCaught')}>
-			<p className="pokemon-name">{name}</p>
+		<div className={cn(styles.circle, caught && styles.circleCaught)}>
+			<p className={styles.pokemonName}>{name}</p>
 			<img
 				src={url}
 				alt=""
 			/>
 			<button
-				className="button"
+				className={styles.button}
 				onClick={handleClick}
 			>
 				{caught ? 'Отпустить' : 'Поймать'}

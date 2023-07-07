@@ -1,4 +1,4 @@
-.page-line {
+.pageLine {
 	color: white;
 	font-family: Georgia, 'Times New Roman', Times, serif;
 	font-weight: 600;
@@ -6,12 +6,12 @@
 	grid-column-start: 2;
 }
 
-.page-line span {
+.pageLine span {
 	font-size: 20px;
 	color: rgb(255, 162, 0);
 }
 
-.next-page-button {
+.nextPageButton {
 	display: block;
 	margin: 10px;
 	padding: 5px 20px;
@@ -23,6 +23,14 @@
 	height: fit-content;
 }
 
-.next-page-button:active {
+.nextPageButton:active {
 	box-shadow: inset 1px 1px 10px 1px;
+}
+
+.gridPrevBtn {
+	grid-column-start: 1;
+}
+
+.gridNextBtn {
+	grid-column-start: 3;
 }

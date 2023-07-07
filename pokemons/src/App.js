@@ -3,14 +3,12 @@ import { connect } from 'react-redux'
 import PokemonButton from './components/PokemonButton'
 import { getPokemons } from './asyncGetPokemons'
 import { NextPage } from './components/NextPage'
-import './App.css'
-
-// В сторе использовал new Set() для айдишников покемонов – почему-то не обновлялся стейт
-
-// Я законнектил к стору только этот компонент, это ок? В детях использовал useDispatch()
+import styles from './App.module.css'
 
 function App_pure(props) {
 	const { pokemons, recieveData } = props
+
+	console.log(pokemons)
 
 	useEffect(() => {
 		getPokemons(pokemons.currentPage).then((x) => recieveData(x))
@@ -18,9 +16,9 @@ function App_pure(props) {
 
 	return (
 		<>
-			<h1 className="counter">Поймано покемонов: {pokemons.pokemonIds.length}</h1>
+			<h1 className={styles.counter}>Поймано покемонов: {pokemons.pokemonIds.length}</h1>
 
-			<div className="App">
+			<div className={styles.app}>
 				{pokemons.data.map((pokemon) => (
 					<PokemonButton
 						key={pokemon.id}
@@ -31,7 +29,7 @@ function App_pure(props) {
 				))}
 			</div>
 
-			<div className="page-buttons">
+			<div className={styles.pageButtons}>
 				<NextPage page={pokemons.currentPage} />
 			</div>
 		</>

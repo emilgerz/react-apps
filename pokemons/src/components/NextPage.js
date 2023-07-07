@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import './NextPage.css'
+import styles from './NextPage.module.css'
 
 export function NextPage({ page }) {
 	const dispatch = useDispatch()
@@ -9,19 +9,19 @@ export function NextPage({ page }) {
 			{page > 0 && (
 				<button
 					onClick={() => dispatch({ type: 'PAGE_BACK' })}
-					className="next-page-button grid-prev-btn"
+					className={`${styles.nextPageButton} ${styles.gridPrevBtn}`}
 				>
 					Предыдущая страница
 				</button>
 			)}
 
-			<p className="page-line">
+			<p className={styles.pageLine}>
 				Страница <span>{page + 1}</span>
 			</p>
 
 			<button
 				onClick={() => dispatch({ type: 'PAGE_FORWARD' })}
-				className="next-page-button grid-next-btn"
+				className={`${styles.nextPageButton} ${styles.gridNextBtn}`}
 			>
 				Следующая страница
 			</button>
