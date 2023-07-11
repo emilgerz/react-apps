@@ -1,4 +1,5 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import { getPokemons } from '../asyncGetPokemons'
 
 const initialState = {
 	data: [],
@@ -30,4 +31,51 @@ const reducer = (state = initialState, action) => {
 	return state
 }
 
-export const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const thnkmdlwr = (storeApi) => (next) => (action) => {
+	if (typeof action === 'function') {
+		action(storeApi.dispatch)
+	} else {
+		return next(action)
+	}
+}
+
+const CHANGE_PAGE_ACTIONS = ['PAGE_FORWARD', 'PAGE_BACK']
+
+const pageMdlwr =
+	({ dispatch, getState }) =>
+	(next) =>
+	(action) => {
+		next(action)
+
+		if (CHANGE_PAGE_ACTIONS.includes(action.type)) {
+			dispatch(fetchPokemons(getState().currentPage))
+		}
+	}
+
+const fetchPokemons = (currentPage) => (dispatch) => {
+	dispatch({
+		type: 'RECIEVE_POKEMONS_START',
+	})
+
+	getPokemons(currentPage)
+		.then((data) =>
+			dispatch({
+				type: 'RECIEVE_POKEMONS_DATA',
+				value: data,
+			})
+		)
+		.catch(() => {
+			dispatch({
+				type: 'RECIEVE_POKEMONS_FAILED',
+			})
+		})
+}
+
+export const store = createStore(
+	reducer,
+	applyMiddleware(thnkmdlwr, pageMdlwr)
+	// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+)
+
+const currentPage = store.getState().currentPage
+store.dispatch(fetchPokemons(currentPage))

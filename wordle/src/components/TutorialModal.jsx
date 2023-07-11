@@ -1,7 +1,21 @@
 import tutorialPic from '../assets/img/tutorial-pic.png'
 import PropTypes from 'prop-types'
+import { useEffect } from 'react'
 
 export const TutorialModal = ({ tutorialHandler }) => {
+	useEffect(() => {
+		const handler = (event) => {
+			event.stopPropagation()
+			console.log('stopPropagation()')
+		}
+		console.log('TutorialModal')
+		document.addEventListener('keydown', handler)
+
+		return () => {
+			document.removeEventListener('keydown', handler)
+		}
+	}, [])
+
 	return (
 		<div className="overflow">
 			<div className="tutorial">

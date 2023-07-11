@@ -26,7 +26,7 @@ const reducer = (state = initialState, action) => {
 				return state
 			}
 
-			if (!action.words.includes(inputWord.toLowerCase())) {
+			if (!wordsBank.includes(inputWord.toLowerCase())) {
 				return { ...state, isCorrectWord: true }
 			}
 
@@ -93,7 +93,7 @@ function App() {
 	}
 
 	const onEnterPress = () => {
-		dispatch({ type: 'ENTER_PRESS', words: wordsBank })
+		dispatch({ type: 'ENTER_PRESS' })
 	}
 
 	const newWordHandler = () => {

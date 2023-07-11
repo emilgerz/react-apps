@@ -11,10 +11,6 @@ const keyboardKeys = [
 
 export function Keyboard({ onLetterPress, onBsPress, onEnterPress, letterColor, tutorialModal }) {
 	useEffect(() => {
-		if (tutorialModal) {
-			return
-		}
-
 		const keyboardHandler = (event) => {
 			if (event.key === 'Enter') {
 				onEnterPress()
@@ -31,7 +27,6 @@ export function Keyboard({ onLetterPress, onBsPress, onEnterPress, letterColor, 
 				return
 			}
 		}
-
 		window.addEventListener('keydown', keyboardHandler)
 
 		return () => removeEventListener('keydown', keyboardHandler)

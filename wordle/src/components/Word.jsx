@@ -6,8 +6,6 @@ export function Word({ inputWord, isCorrectWord }) {
 	const regularStyle = 'wordle__table__word__letter'
 	const animatedStyle = `${regularStyle} wordle__table__word__letter-jump`
 
-	console.log(isCorrectWord)
-
 	return (
 		<div className={classNames('wordle__table__word', isCorrectWord && 'wordle__table__word-wrong')}>
 			{Array(5)

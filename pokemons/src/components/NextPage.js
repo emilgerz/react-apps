@@ -1,7 +1,8 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from './NextPage.module.css'
 
-export function NextPage({ page }) {
+export function NextPage() {
+	const page = useSelector((state) => state.currentPage)
 	const dispatch = useDispatch()
 
 	return (
