@@ -22,7 +22,8 @@ Apps:
   <br/>
 
 - [WORDLE](#wordle) <br/>
-  **useReducer & useEffect hooks, correct addEventListener on keyboard, UI colorization based on game logics, PropTypes, SCSS/Sass**
+  **useReducer & useEffect hooks, correct addEventListener on keyboard, UI colorization based on game logics, PropTypes, SCSS/Sass** <br>
+  [PLAY NOW](https://wordle-eg.netlify.app)
   <br/>
 
 - [Avito Filters](#avito-filters) <br/>
@@ -45,9 +46,11 @@ Apps:
 
 ## WORDLE
 
+[PLAY NOW](https://wordle-eg.netlify.app)
+
 ### Explanation
 
-Famous mini-game to find out what 6-letters word was hidden <br/>
+Famous mini-game to find out what 6-letters word was hidden. <br/>
 **createPortal, useReducer & useEffect hooks, correct addEventListener on keyboard, UI colorization based on game logics, PropTypes, SCSS/Sass**
 
 ### How it works
@@ -149,6 +152,10 @@ On the right side of inputs we have a color-inputs – you can pick color there,
 - [WORDLE](#wordle-ru)<br/>
   **useReducer & useEffect хуки, корректный addEventListener на клавиатуре, окрашивание UI опираясь на игровую логику, PropTypes, SCSS/Sass**
   <br/>
+  [PLAY NOW](https://wordle-eg.netlify.app)
+
+  <br/>
+
 - [Avito Filters](#avito-filters-ru)<br/>
   **Древовидное меню из чекбоксов, построенное с помощью "плоского" массива объектов, умное поведение чекбоксов, рекурсия, единственный компонент, который используется для "предков и наследников", SCSS/Sass.**
   <br/>
@@ -165,6 +172,8 @@ On the right side of inputs we have a color-inputs – you can pick color there,
 ---
 
 ## WORDLE RU
+
+[PLAY NOW](https://wordle-eg.netlify.app)
 
 ### Краткое описание
 
