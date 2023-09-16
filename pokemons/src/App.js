@@ -1,5 +1,5 @@
 import { useEffect, useCallback } from 'react'
-import { connect, useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import PokemonButton from './components/PokemonButton'
 import { NextPage } from './components/NextPage'
 import styles from './App.module.css'

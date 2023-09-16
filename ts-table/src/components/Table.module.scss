@@ -1,0 +1,29 @@
+.table {
+	margin: 100px auto 0;
+	min-width: 500px;
+	text-align: center;
+	border-collapse: collapse;
+	border: 1px solid #b4b4b4;
+
+	& td,
+	th {
+		padding: 10px;
+		border: 1px solid #b4b4b4;
+	}
+
+	& th {
+		cursor: pointer;
+	}
+
+	& > tbody > tr:nth-child(odd) {
+		background-color: #d1d1d1;
+	}
+}
+
+thead > .sortGrow {
+	border-top: 5px solid orange;
+}
+
+thead > .sortDecr {
+	border-bottom: 5px solid black;
+}
